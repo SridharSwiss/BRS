@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLIP Overview</title>
+    <style>
+        /* Unified Style for Tabs */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2E8B57, #90EE90 40%, #1E90FF 70%, #00CED1 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .overview-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.98);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            overflow: hidden;
+            padding: 0 0 35px 0;
+        }
+        .tab-bar {
+            display: flex;
+            background: linear-gradient(90deg, #1B4332 0%, #1E90FF 80%);
+            border-radius: 25px 25px 0 0;
+            overflow: hidden;
+        }
+        .tab-bar button {
+            flex: 1;
+            padding: 22px 0;
+            border: none;
+            background: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .tab-bar button.active {
+            background: rgba(255,255,255,0.12);
+            color: #ffd700;
+        }
+        .tab-content {
+            display: none;
+            animation: fadein 0.4s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadein {
+            from { opacity: 0; transform: translateY(30px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tab-bar button { font-size: 1rem; padding: 15px 0; }
+            .overview-container { border-radius: 0; }
+        }
+        /* Embedded content containers get extra padding */
+        .embedded-section { padding: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="overview-container">
+        <div class="tab-bar">
+            <button class="active" onclick="showTab(0)">వ్యవసాయ విప్లవం</button>
+            <button onclick="showTab(1)">నీటి కోరత పరిష్కారం</button>
+            <button onclick="showTab(2)">తాగునీటి భద్రత</button>
+        </div>
+        <!-- KLIP-AGRI.html Content -->
+        <div class="tab-content active embedded-section">
+            <!-- Paste KLIP-AGRI.html body here (remove outer <body> and <html> tags, keep only container div) -->
+            <div class="container">
+                <!-- ... All KLIP-AGRI.html content from <div class="container"> ... </div> ... -->
+            </div>
+        </div>
+        <!-- KLIP-Water.html Content -->
+        <div class="tab-content embedded-section">
+            <!-- Paste KLIP-Water.html body here (remove outer <body> and <html> tags, keep only container div) -->
+            <div class="container">
+                <!-- ... All KLIP-Water.html content from <div class="container"> ... </div> ... -->
+            </div>
+        </div>
+        <!-- klip-dw.html Content -->
+        <div class="tab-content embedded-section">
+            <!-- Paste klip-dw.html body here (remove outer <body> and <html> tags, keep only container div) -->
+            <div class="container">
+                <!-- ... All klip-dw.html content from <div class="container"> ... </div> ... -->
+            </div>
+        </div>
+    </div>
+    <script>
+        function showTab(idx) {
+            const tabs = document.querySelectorAll('.tab-bar button');
+            const contents = document.querySelectorAll('.tab-content');
+            tabs.forEach((tab, i) => tab.classList.toggle('active', i === idx));
+            contents.forEach((c, i) => c.classList.toggle('active', i === idx));
+        }
+    </script>
+</body>
+</html>
