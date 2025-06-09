@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>కాళేశ్వరం ప్రాజెక్ట్ వైభవం</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Telugu', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .infographic {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" patternUnits="userSpaceOnUse" width="30" height="30"><path d="M15 0 Q20 7 15 15 Q10 22 15 30" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="2"/><path d="M0 10 Q5 17 0 25 Q-5 32 0 40" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="1.5"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
+            opacity: 0.4;
+        }
+        
+        .header h1 {
+            font-size: 4em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header .subtitle {
+            font-size: 1.6em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 10px;
+        }
+        
+        .header .description {
+            font-size: 1.2em;
+            opacity: 0.85;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 50px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2.8em;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transform: translateY(0);
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-label {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+        }
+        
+        .records-section {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .records-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .record-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #ff6b6b;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .record-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .record-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .record-desc {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1em;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: left;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: conic-gradient(from 0deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.1));
+            transition: all 0.6s ease;
+        }
+        
+        .feature-card:hover::before {
+            top: -150%;
+            left: -150%;
+        }
+        
+        .feature-card:hover {
+            transform: scale(1.03) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3.5em;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-title {
+            font-size: 1.7em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-desc {
+            opacity: 0.95;
+            line-height: 1.6;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .impact-section {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,15 61,35 85,35 67,50 73,74 50,59 27,74 33,50 15,35 39,35" fill="rgba(255,255,255,0.08)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .impact-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .impact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .impact-number {
+            font-size: 3em;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+        
+        .impact-label {
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .technical-details {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 50px;
+            border-radius: 25px;
+            margin: 50px 0;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .detail-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .detail-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .detail-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .detail-value {
+            font-size: 1.2em;
+            color: #e74c3c;
+            font-weight: 700;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,30 50,50 Q75,70 100,50" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="2"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 3em; }
+            .section-title { font-size: 2.2em; }
+            .stat-number { font-size: 2.8em; }
+            .content { padding: 30px; }
+            .records-section, .impact-section, .technical-details { padding: 30px; }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="header">
+            <h1>🌊 కాళేశ్వరం లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్ట్</h1>
+            <div class="subtitle">ప్రపంచంలోనే అతిపెద్ద బహుళ-దశల ఎత్తిపోతల నీటిపారుదల పథకం</div>
+            <div class="description">తెలంగాణ రాష్ట్రంలోని జయశంకర్ భూపాలపల్లి జిల్లా, కాళేశ్వరంలో గోదావరి నదిపై నిర్మించబడిన అత్యాధునిక నీటిపారుదల ప్రాజెక్ట్</div>
+        </div>
+        
+        <div class="content">
+            <!-- మూలాంకాలు -->
+            <div class="section">
+                <h2 class="section-title">🏆 ప్రాజెక్ట్ వైభవం</h2>
+                <div class="stats-grid">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">పంపింగ్ స్టేషన్లు</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #c3cfe2, #c3cfe2);">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">బ్యారేజీలు</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ప్రాజెక్ట్ భాగాలు -->
+            <div class="section">
+                <h2 class="section-title">🔗 ప్రాజెక్ట్ భాగాలు</h2>
+                <div class="features-grid">
+                    <div class="feature-card" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <div class="feature-icon">🏛️</div>
+                        <div class="feature-title">మల్లన్న సాగర్ లింక్</div>
+                        <div class="feature-desc">కాళేశ్వరం నుండి మల్లన్న సాగర్ రిజర్వాయర్ వరకు 83 కిమీ దూరం వరకు నీటిని పంపుతుంది. ఇది ప్రాజెక్ట్‌లో అతిపెద్ద లింక్.</div>
+                    </div>
+                    <div class="feature-card" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52);">
+                        <div class="feature-icon">🌊</div>
+                        <div class="feature-title">కోండపోచమ్మ సాగర్ లింక్</div>
+                        <div class="feature-desc">మల్లన్న సాగర్ నుండి కోండపోచమ్మ సాగర్ వరకు నీటిని రవాణా చేస్తుంది. ఇది మధ్య తెలంగాణ ప్రాంతాలకు నీటిని అందిస్తుంది.</div>
+                    </div>
+                    <div class="feature-card" style="background: linear-gradient(135deg, #4ecdc4, #44a08d);">
+                        <div class="feature-icon">🏞️</div>
+                        <div class="feature-title">రంగారెడ్డి లింక్</div>
+                        <div class="feature-desc">హైదరాబాద్ మరియు దాని చుట్టుపక్కల ప్రాంతాలకు నీటిని సరఫరా చేయడంలో కీలక పాత్ర పోషిస్తుంది.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ప్రయోజనాలు -->
+            <div class="records-section" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                <h2 class="section-title" style="color: #2c3e50;">🎯 ప్రధాన ప్రయోజనాలు</h2>
+                <div class="record-item">
+                    <div class="record-title">🌾 వ్యవసాయ రంగం</div>
+                    <div class="record-desc">
+                        • 45 లక్ష ఎకరాలకు నీటిపారుదల సౌకర్యం<br>
+                        • వ్యవసాయ ఉత్పాదకతలో 3 రెట్లు పెరుగుదల<br>
+                        • రైతుల ఆదాయంలో గణనీయమైన పెరుగుదల<br>
+                        • కరువు ప్రభావం పూర్తిగా తొలగింపు
+                    </div>
+                </div>
+                <div class="record-item">
+                    <div class="record-title">🏭 పారిశ్రామిక అభివృద్ధి</div>
+                    <div class="record-desc">
+                        • పారిశ్రామిక వలయాలకు నిరంతర నీటి సరఫరా<br>
+                        • కొత్త పరిశ్రమలకు ప్రోత్సాహం<br>
+                        • ఉపాధి అవకాశాలలో భారీ పెరుగుదల<br>
+                        • ఆర్థిక వృద్ధికి గణనీయ సహకారం
+                    </div>
+                </div>
+                <div class="record-item">
+                    <div class="record-title">🏠 గృహ వినియోగం</div>
+                    <div class="record-desc">
+                        • 24x7 గుణమైన త్రాగునీటి సరఫరా<br>
+                        • గ్రామీణ ప్రాంతాలలో జల భద్రత<br>
+                        • నీటి కొరత సమస్య పూర్తిగా పరిష్కారం<br>
+                        • ప్రజారోగ్యంలో మెరుగుదల
+                    </div>
+                </div>
+            </div>
+            
+            <!-- భవిష్యత్ ప్రణాళికలు -->
+            <div class="technical-details" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                <h2 class="section-title" style="color: white;">🚀 భవిష్యత్ దృష్టిని</h2>
+                <div class="detail-grid">
+                    <div class="detail-item" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="detail-title" style="color: #a8edea;">రాష్ట్ర కవరేజీ</div>
+                        <div class="detail-value" style="color: #ffecd2;">తెలంగాణలో 65% వ్యవసాయ భూమి</div>
+                    </div>
+                    <div class="detail-item" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="detail-title" style="color: #a8edea;">ఆర్థిక ప్రభావం</div>
+                        <div class="detail-value" style="color: #ffecd2;">ఏటా ₹50,000 కోట్ల జిడిపి వృద్ధి</div>
+                    </div>
+                    <div class="detail-item" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="detail-title" style="color: #a8edea;">పర్యావరణ ప్రభావం</div>
+                        <div class="detail-value" style="color: #ffecd2;">5 లక్ష ఎకరాలు అడవులు</div>
+                    </div>
+                    <div class="detail-item" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="detail-title" style="color: #a8edea;">సామాజిక మార్పు</div>
+                        <div class="detail-value" style="color: #ffecd2;">50 లక్ష మంది ప్రజలకు ప్రయోజనం</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- పూర్తి వివరాలు -->
+            <div class="section">
+                <h2 class="section-title">📊 సంపూర్ణ పరిష్కారం</h2>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div class="impact-number">183</div>
+                        <div class="impact-label">రిజర్వాయర్లు</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">88</div>
+                        <div class="impact-label">వీర్లు</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">46</div>
+                        <div class="impact-label">చెక్ డ్యామ్‌లు</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">19</div>
+                        <div class="impact-label">ప్రధాన కాలువలు</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">203</div>
+                        <div class="impact-label">ఉప కాలువలు</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">10,000</div>
+                        <div class="impact-label">కిలోమీటర్ల పంపిణీ వ్యవస్థ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-content">
+                <strong>కాළేశ్వరం లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్ట్</strong><br>
+                తెలంగాణ రాష్ట్ర వ్యవసాయ భవిష్యత్తును మార్చుతున్న మహా ప్రాజెక్ట్<br>
+                <em>ఆధునిక ఇంజనీరింగ్ అద్భుతానికి సాక్ష్యం | తెలంగాణ ప్రభుత్వం</em><br><br>
+                <div style="font-size: 0.9em; opacity: 0.8;">
+                    "హరితహారం - నీటి వనం - బంగారు తెలంగాణ"<br>
+                    మా రాష్ట్రపు పొన్నుగుండెలకు నీటి కొరత లేని భవిష్యత్తు
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.stat-card, .feature-card, .impact-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>card pulse">
+                        <div class="stat-number">45 లక్షలు</div>
+                        <div class="stat-label">ఎకరాలు నీటిపారుదల</div>
+                    </div>
+                    <div class="stat-card float">
+                        <div class="stat-number">240 టిఎంసి</div>
+                        <div class="stat-label">నీటి ఉత్పాదన సామర్థ్యం</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">20/31</div>
+                        <div class="stat-label">జిల్లాలకు ప్రయోజనం</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4,300 మెగావాట్లు</div>
+                        <div class="stat-label">రోజువారీ విద్యుత్ అవసరం</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ప్రపంచ రికార్డులు -->
+            <div class="records-section">
+                <h2 class="section-title" style="color: #2c3e50;">🌍 ప్రపంచ రికార్డులు మరియు విజయాలు</h2>
+                <div class="record-item">
+                    <div class="record-title">🥇 అతిపెద్ద బహుళ-దశల ఎత్తిపోతల ప్రాజెక్ట్</div>
+                    <div class="record-desc">ప్రస్తుతం ప్రపంచంలోనే అతిపెద్ద మల్టీ-స్టేజ్ లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్ట్ గా గుర్తింపు పొందిన ఈ పథకం నీటి నిర్వహణలో ఇంజనీరింగ్ విజయాలన్నింటినీ మించిపోయింది.</div>
+                </div>
+                <div class="record-item">
+                    <div class="record-title">🚇 అతి పొడవైన భూగర్భ నీటిపారుదల సొరంగం</div>
+                    <div class="record-desc">ప్రపంచంలోనే అతి పొడవైన 14.09 కిలోమీటర్ల భూగర్భ నీటిపారుదల సొరంగాన్ని కలిగి ఉంది, ఇది అత్యాధునిక సొరంగ సాంకేతిక పరిజ్ఞానాన్ని ప్రదర్శిస్తుంది.</div>
+                </div>
+                <div class="record-item">
+                    <div class="record-title">🏊 అతిపెద్ద సర్జ్ పూల్ సామర్థ్యం</div>
+                    <div class="record-desc">ప్రపంచంలోనే అతిపెద్ద కేవర్న్ మరియు సర్జ్ పూల్ ను కలిగి ఉంది, ఇది 2 కోట్ల లీటర్ల నీటిని నిల్వ చేసే సామర్థ్యంతో అత్యుత్తమ నీటి నిర్వహణకు అనుకూలం.</div>
+                </div>
+                <div class="record-item">
+                    <div class="record-title">🌊 భారీ రిజర్వాయర్ నెట్‌వర్క్</div>
+                    <div class="record-desc">మల్లన్న సాగర్ రిజర్వాయర్, భారతదేశంలోని అతిపెద్ద కృత్రిమ రిజర్వాయర్లలో ఒకటి, 50 టిఎంసి సామర్థ్యంతో 2022 ఫిబ్రవరిలో ప్రారంభించబడింది.</div>
+                </div>
+            </div>
+            
+            <!-- ముఖ్య లక్షణాలు -->
+            <div class="section">
+                <h2 class="section-title">⚡ ఇంజనీరింగ్ అద్భుతం</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏗️</div>
+                        <div class="feature-title">బహుళ ప్రయోజన రూపకల్పన</div>
+                        <div class="feature-desc">తెలంగాణ రాష్ట్రం అంతటా నీటిపారుదల, త్రాగునీటి సరఫరా మరియు పారిశ్రామిక అవసరాలను తీర్చుతుంది.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <div class="feature-title">వ్యవసాయ విప్లవం</div>
+                        <div class="feature-desc">కరువు బాధిత ప్రాంతాలకు నమ్మదగిన నీటి సరఫరా అందించడం ద్వారా వ్యవసాయ దృశ్యాన్ని మార్చుతుంది.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <div class="feature-title">భూగర్భ జలాల పునరుద్ధరణ</div>
+                        <div class="feature-desc">భూగర్భ జలాలపై ఆధారపడటం నుండి ఉపరితల జల వినియోగానికి మార్చి, సహజ నీటి స్థాయిలను పునరుద్ధరిస్తుంది.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💧</div>
+                        <div class="feature-title">మిషన్ ఏకీకరణ</div>
+                        <div class="feature-desc">సమగ్ర నీటి భద్రత కోసం మిషన్ కాకతీయ మరియు మిషన్ భగీరథకు మద్దతు అందిస్తుంది.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- సాంకేతిక వివరాలు -->
+            <div class="technical-details">
+                <h2 class="section-title" style="color: #2c3e50;">🔧 సాంకేతిక వివరాలు</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="detail-title">ప్రధాన నీటి మూలం</div>
+                        <div class="detail-value">గోదావరి నది</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-title">సిస్టమ్ ఆర్కిటెక్చర్</div>
+                        <div class="detail-value">మల్టీ-లింక్ వ్యవస్థ</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-title">పంపింగ్ సాంకేతికత</div>
+                        <div class="detail-value">అత్యాధునిక</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-title">అమలు కాలం</div>
+                        <div class="detail-value">2014-2025</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-title">ప్రాజెక్ట్ వ్యయం</div>
+                        <div class="detail-value">₹80,000 కోట్లు</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-title">నీటి లిఫ్టింగ్ ఎత్తు</div>
+                        <div class="detail-value">618.5 మీటర్లు</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ప్రభావం -->
+            <div class="impact-section">
+                <h2 class="section-title" style="color: #2c3e50;">📈 పరివర్తనాత్మక ప్రభావం</h2>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div class="impact-number">37 లక్షలు</div>
+                        <div class="impact-label">ఎకరాలు ప్రత్యక్ష నీటిపారుదల</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">20</div>
+                        <div class="impact-label">జిల్లాలు కవర్ చేయబడ్డాయి</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">50%</div>
+                        <div class="impact-label">నీటిపారుదల విస్తీర్ణంలో పెరుగుదల</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">1 లక్ష</div>
+                        <div class="impact-label">కుటుంబాలకు ప్రయోజనం</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">169 టిఎంసి</div>
+                        <div class="impact-label">నీటిపారుదల కోసం</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">30 టిఎంసి</div>
+                        <div class="impact-label">హైదరాబాద్ త్రాగునీటికి</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- అదనపు లక్షణాలు -->
+            <div class="section">
+                <h2 class="section-title">🌟 అదనపు విశేషతలు</h2>
+                <div class="stats-grid">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">ప్యాకేజీలు</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                        <div class="stat-number">1531 కిమీ</div>
+                        <div class="stat-label">కాలువల పొడవు</div>
+                    </div>
+                    <div class="stat-
