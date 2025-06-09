@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>కాళేశ్వరం వ్యవసాయ విప్లవం</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2E8B57, #90EE90);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #1B4332, #2D6A4F);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '🌾';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            opacity: 0.3;
+        }
+        
+        .header::after {
+            content: '💧';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            opacity: 0.3;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #E8F5E8, #F0FFF0);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border-left: 5px solid #2E8B57;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(46, 139, 87, 0.2);
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { right: -100%; }
+            100% { right: 100%; }
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1B4332;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #2D6A4F;
+            font-weight: 600;
+        }
+        
+        .highlight-section {
+            background: linear-gradient(135deg, #FFF8DC, #F5E6A3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #DAA520;
+        }
+        
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .achievement-list li {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #228B22;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .achievement-list li::before {
+            content: '✅';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .production-chart {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #1B4332;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background: #E5E5E5;
+            border-radius: 25px;
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #228B22, #32CD32);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: fillAnimation 2s ease-out;
+        }
+        
+        @keyframes fillAnimation {
+            from { width: 0%; }
+        }
+        
+        .footer {
+            background: #1B4332;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .stat-number { font-size: 2rem; }
+            .header { padding: 30px 20px; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>కాళేశ్వరం లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్ట్</h1>
+            <div class="subtitle">అత్యంత విప్లవాత్మక వ్యవసాయ పరివర్తన</div>
+        </div>
+        
+        <div class="content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">లక్షల ఎకరాలు<br>మొత్తం ప్రయోజనం</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">18.25</div>
+                    <div class="stat-label">లక్షల ఎకరాలు<br>కొత్త ఆయకట్టు</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">17-18.83</div>
+                    <div class="stat-label">లక్షల ఎకరాలు<br>స్థిరీకరించిన ఆయకట్టు</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">66.7</div>
+                    <div class="stat-label">లక్షల ఎకరాలు<br>మొత్తం సాగు విస్తీర్ణం</div>
+                </div>
+            </div>
+            
+            <div class="highlight-section">
+                <h2 style="color: #B8860B; margin-bottom: 20px; text-align: center;">🏆 రికార్డు వరి ఉత్పత్తి - ఖరీఫ్ 2023-24</h2>
+                <div class="production-chart">
+                    <div class="chart-title">తెలంగాణ వరి ఉత్పత్తి</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+                        <span style="font-size: 1.2rem; font-weight: bold;">1.53 కోట్ల మెట్రిక్ టన్నులు</span>
+                        <span style="background: #228B22; color: white; padding: 5px 15px; border-radius: 20px;">భారతదేశంలో #1</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">రికార్డు స్థాయి ఉత్పత్తి</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="color: #1B4332; margin: 30px 0 20px 0; text-align: center;">🌟 ప్రధాన విజయాలు</h2>
+            <ul class="achievement-list">
+                <li>కరువు పీడిత ప్రాంతాలను సారవంతమైన వ్యవసాయ కేంద్రంగా మార్చడం</li>
+                <li>సంవత్సరం పొడవునా నీటి లభ్యతతో బహుళ పంటల సాగు అవకాశం</li>
+                <li>రాష్ট్రానికి సంపూర్ణ ఆహార భద్రత మరియు స్వయం సమృద్ధి</li>
+                <li>భారతదేశంలోనే అత్యధిక వరి ఉత్పత్తి రాష్ట్రంగా తెలంగాణ</li>
+                <li>విస్తృత పంటల వైవిధ్యం మరియు కృషి ఆధునీకరణ</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <strong>కాళేశ్వరం: తెలంగాణకు ఒక అద్భుతమైన వరం 🙏</strong>
+        </div>
+    </div>
+</body>
+</html>
