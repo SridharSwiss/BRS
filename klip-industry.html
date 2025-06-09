@@ -314,9 +314,77 @@
             .header { padding: 30px 20px; }
             .content { padding: 20px; }
         }
+            body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f9f9f9; }
+    .navbar {
+      width: 100%;
+      background: #2d5380;
+      color: white;
+      top: 0; left: 0; position: fixed; z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .navbar-content {
+      max-width: 900px; margin: 0 auto; display: flex;
+      align-items: center; justify-content: space-between;
+      padding: 0 .5rem;
+    }
+    .navbar-title {
+      font-size: 1.3rem; font-weight: bold; padding: 1rem .5rem;
+      white-space: nowrap;
+    }
+    .navbar-links {
+      display: flex; gap: 1.5rem;
+    }
+    .navbar-link {
+      color: white; text-decoration: none; font-size: 1rem;
+      padding: 1rem 0; display: block; position: relative;
+      transition: color 0.18s;
+    }
+    .navbar-link:hover, .navbar-link:focus { color: #ffe066; }
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      flex-direction: column; justify-content: center; align-items: center;
+      padding: 1rem .5rem;
+    }
+    .hamburger span {
+      display: block; width: 28px; height: 4px; background: #fff;
+      margin: 4px 0; border-radius: 2px; transition: .3s;
+    }
+    @media (max-width: 700px) {
+      .navbar-content { flex-direction: row; }
+      .navbar-links {
+        position: absolute; right: 0; top: 100%; background: #2d5380;
+        flex-direction: column; width: 100%; align-items: flex-start;
+        gap: 0; display: none;
+      }
+      .navbar-links.open { display: flex; }
+      .navbar-link { width: 100%; padding: 1rem 1.5rem; }
+      .hamburger { display: flex; }
+    }
+    /* Make sure body content is not hidden under the navbar */
+    .navbar-spacer { height: 60px; }
+    @media (max-width: 700px) {
+      .navbar-spacer { height: 56px; }
+    }
     </style>
 </head>
 <body>
+      <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">Kaleshwaram Project</div>
+      <button class="hamburger" id="navToggle" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="navbar-links" id="mainNav">
+        <a class="navbar-link" href="klip-intro.html">Introduction</a>
+        <a class="navbar-link" href="KLIP-AGRI.html">Agriculture</a>
+        <a class="navbar-link" href="KLIP-Water.html">Water</a>
+        <a class="navbar-link" href="klip-industry.html">Industry</a>
+        <a class="navbar-link" href="klip-alleg.html">Allegations</a>
+        <a class="navbar-link" href="Project.html">Project</a>
+      </div>
+    </div>
+  </nav>
+  <div class="navbar-spacer"></div>
     <div class="container">
         <div class="header">
             <h1>పరిశ్రమకు బలమైన మద్దతు</h1>
