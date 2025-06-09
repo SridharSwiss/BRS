@@ -142,12 +142,13 @@
     .tabcontent.active {
       display: block;
     }
-    iframe {
-      width: 100%;
-      height: 800px;
-      border: none;
-      background: #fff;
-    }
+iframe {
+  width: 100%;
+  height: 100vh; /* or 100% if you want it to fill its parent */
+  min-height: 600px; /* optional, for desktop */
+  border: none;
+  background: #fff;
+}
     @media (max-width: 800px) {
       iframe {
         height: 480px;
