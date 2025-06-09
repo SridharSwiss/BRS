@@ -2,128 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kaleshwaram Navigation</title>
+  <title>Kaleshwaram Portal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    header {
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f9f9f9; }
+    .navbar {
+      width: 100%;
       background: #2d5380;
       color: white;
-      padding: 1.5rem 0;
-      text-align: center;
+      top: 0; left: 0; position: fixed; z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     }
-
-    .nav-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
-      padding: 0;
-      position: relative;
+    .navbar-content {
+      max-width: 900px; margin: 0 auto; display: flex;
+      align-items: center; justify-content: space-between;
+      padding: 0 .5rem;
     }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem 1rem;
-      transition: max-height 0.3s;
+    .navbar-title {
+      font-size: 1.3rem; font-weight: bold; padding: 1rem .5rem;
+      white-space: nowrap;
     }
-
-    .nav-link {
-      flex: 1 1 220px;
-      min-width: 180px;
-      background: #e8f1fa;
-      color: #2d5380;
-      text-decoration: none;
-      font-size: 1.2rem;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      border-radius: 8px;
-      transition: background 0.2s, transform 0.2s;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    .navbar-links {
+      display: flex; gap: 1.5rem;
     }
-
-    .nav-link:hover, .nav-link:focus {
-      background: #c7e0fa;
-      transform: translateY(-3px) scale(1.03);
-      outline: none;
+    .navbar-link {
+      color: white; text-decoration: none; font-size: 1rem;
+      padding: 1rem 0; display: block; position: relative;
+      transition: color 0.18s;
     }
-
+    .navbar-link:hover, .navbar-link:focus { color: #ffe066; }
     .hamburger {
-      display: none;
-      position: absolute;
-      top: 1.2rem;
-      right: 1.5rem;
-      width: 40px;
-      height: 40px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 2;
+      display: none; background: none; border: none; cursor: pointer;
+      flex-direction: column; justify-content: center; align-items: center;
+      padding: 1rem .5rem;
     }
     .hamburger span {
-      display: block;
-      height: 4px;
-      width: 28px;
-      margin: 6px auto;
-      background: #2d5380;
-      border-radius: 2px;
-      transition: 0.3s;
+      display: block; width: 28px; height: 4px; background: #fff;
+      margin: 4px 0; border-radius: 2px; transition: .3s;
     }
-
-    @media (max-width: 600px) {
-      .nav-container {
-        padding: 0;
+    @media (max-width: 700px) {
+      .navbar-content { flex-direction: row; }
+      .navbar-links {
+        position: absolute; right: 0; top: 100%; background: #2d5380;
+        flex-direction: column; width: 100%; align-items: flex-start;
+        gap: 0; display: none;
       }
-      .hamburger {
-        display: block;
-      }
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0.5rem;
-        max-height: 0;
-        overflow: hidden;
-      }
-      nav.open {
-        max-height: 500px; /* enough for all links */
-        transition: max-height 0.3s;
-      }
-      .nav-link {
-        font-size: 1rem;
-        padding: 1rem 0.5rem;
-      }
+      .navbar-links.open { display: flex; }
+      .navbar-link { width: 100%; padding: 1rem 1.5rem; }
+      .hamburger { display: flex; }
+    }
+    /* Make sure body content is not hidden under the navbar */
+    .navbar-spacer { height: 60px; }
+    @media (max-width: 700px) {
+      .navbar-spacer { height: 56px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Kaleshwaram Project Portal</h1>
-    <p>Navigate between different sections</p>
-  </header>
-  <div class="nav-container">
-    <button class="hamburger" id="navToggle" aria-label="Open navigation menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav id="mainNav">
-      <a class="nav-link" href="klip-intro.html">Introduction</a>
-      <a class="nav-link" href="KLIP-AGRI.html">Agriculture</a>
-      <a class="nav-link" href="KLIP-Water.html">Water</a>
-      <a class="nav-link" href="klip-industry.html">Industry</a>
-      <a class="nav-link" href="klip-alleg.html">Allegations</a>
-    </nav>
-  </div>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">Kaleshwaram Project</div>
+      <button class="hamburger" id="navToggle" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="navbar-links" id="mainNav">
+        <a class="navbar-link" href="klip-intro.html">Introduction</a>
+        <a class="navbar-link" href="KLIP-AGRI.html">Agriculture</a>
+        <a class="navbar-link" href="KLIP-Water.html">Water</a>
+        <a class="navbar-link" href="klip-industry.html">Industry</a>
+        <a class="navbar-link" href="klip-alleg.html">Allegations</a>
+      </div>
+    </div>
+  </nav>
+  <div class="navbar-spacer"></div>
+  <!-- PAGE CONTENT BELOW -->
+
+  <!-- Example content (replace with your own for each page) -->
+  <main style="max-width:900px;margin:2rem auto;padding:1rem;background:white;border-radius:12px;">
+    <h1>Welcome to the Kaleshwaram Project Portal</h1>
+    <p>This is the main content area. Replace this with your page's content.</p>
+  </main>
+  <!-- Hamburger menu JS -->
   <script>
     const navToggle = document.getElementById('navToggle');
     const mainNav = document.getElementById('mainNav');
