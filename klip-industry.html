@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>కాళేశ్వరం - పారిశ్రామిక అభివృద్ధి</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4B0082, #8A2BE2);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #483D8B, #6A5ACD);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '🏭';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            opacity: 0.3;
+            animation: industrial 3s ease-in-out infinite;
+        }
+        
+        .header::after {
+            content: '⚙️';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            opacity: 0.3;
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes industrial {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .industry-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .industry-card {
+            background: linear-gradient(135deg, #E6E6FA, #F8F8FF);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border-left: 5px solid #6A5ACD;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .industry-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(106, 90, 205, 0.2);
+        }
+        
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .industry-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .industry-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4B0082;
+            margin-bottom: 10px;
+        }
+        
+        .industry-label {
+            font-size: 1.1rem;
+            color: #6A5ACD;
+            font-weight: 600;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #6A5ACD;
+        }
+        
+        .section h3 {
+            color: #4B0082;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .allocation-section {
+            background: linear-gradient(135deg, #F0F0FF, #E6E6FA);
+            border-left: 5px solid #8A2BE2;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .benefits-list li {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #9370DB;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .benefits-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(147, 112, 219, 0.2);
+        }
+        
+        .benefits-list li::before {
+            content: '🚀';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        .investment-card {
+            background: linear-gradient(45deg, #6A5ACD, #8A2BE2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .investment-card:hover {
+            transform: scale(1.05) rotate(1deg);
+        }
+        
+        .investment-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: sparkle 4s infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .investment-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .investment-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .growth-section {
+            background: linear-gradient(135deg, #FFE4E1, #FFF0F5);
+            border-left: 5px solid #FF69B4;
+        }
+        
+        .progress-section {
+            background: linear-gradient(135deg, #F5F5FF, #E6E6FA);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            background: #E5E5E5;
+            border-radius: 25px;
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6A5ACD, #8A2BE2);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: fillIndustrial 3s ease-out;
+        }
+        
+        @keyframes fillIndustrial {
+            from { width: 0%; }
+        }
+        
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .impact-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #9370DB;
+            transition: transform 0.3s ease;
+        }
+        
+        .impact-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .impact-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4B0082;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .industry-number { font-size: 2rem; }
+            .header { padding: 30px 20px; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>పరిశ్రమకు బలమైన మద్దతు</h1>
+            <div class="subtitle">కాళేశ్వరం పారిశ్రామిక అభివృద్ధి ఇంజిన్</div>
+        </div>
+        
+        <div class="content">
+            <div class="industry-stats">
+                <div class="industry-card">
+                    <div class="industry-icon">🏭</div>
+                    <div class="industry-number">16</div>
+                    <div class="industry-label">TMC పారిశ్రామిక కేటాయింపు</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon">💼</div>
+                    <div class="industry-number">100%</div>
+                    <div class="industry-label">నీటి భద్రత హామీ</div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon">📈</div>
+                    <div class="industry-number">∞</div>
+                    <div class="industry-label">పెట్టుబడుల ఆకర్షణ</div>
+                </div>
+            </div>
+            
+            <div class="section allocation-section">
+                <h3>💧 పారిశ్రామిక నీటి కేటాయింపు</h3>
+                <div class="progress-section">
+                    <h4 style="color: #4B0082; margin-bottom: 15px;">పరిశ్రమలకు నీటi సరఫరా హామీ</h4>
+                    <div style="margin-bottom: 15px;">
+                        <span>మొత్తం కేటాయింపు: 16 TMC</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;">పూర్తి పారిశ్రామిక అవసరాలు తీర్చడం</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="benefits-list">
+                    <li>పరిశ్రమలకు 16 TMC నీటి కేటాయింపుతో పూర్తి నీటi భద్రత</li>
+                    <li>వర్షాలపై ఆధారపడకుండా సంవత్సరం పొడవునా స్థిరమైన సరఫరా</li>
+                    <li>భారీ పరిశ్రమలు మరియు సూక్ష్మ పరిశ్రమలకు సమాన లభ్యత</li>
+                    <li>నీటి నాణ్యత మరియు పరిమాణంలో అధిక ప్రమాణాలు</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3>🎯 పెట్టుబడుల ఆకర్షణ</h3>
+                <div class="investment-grid">
+                    <div class="investment-card">
+                        <div class="investment-title">కొత్త పరిశ్రమలు</div>
+                        <div class="investment-desc">నీటి లభ్యతతో
