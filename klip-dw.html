@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>కాళేశ్వరం - తాగునీటి భద్రత</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00CED1, #48D1CC);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #008B8B, #20B2AA);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '🚰';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            opacity: 0.3;
+            animation: drip 2s ease-in-out infinite;
+        }
+        
+        .header::after {
+            content: '💧';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            opacity: 0.3;
+            animation: drip 2s ease-in-out infinite reverse;
+        }
+        
+        @keyframes drip {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .supply-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .supply-card {
+            background: linear-gradient(135deg, #E0FFFF, #F0FFFF);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border-left: 5px solid #00CED1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .supply-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 206, 209, 0.2);
+        }
+        
+        .supply-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: waterFlow 3s infinite;
+        }
+        
+        @keyframes waterFlow {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+        
+        .supply-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .supply-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #008B8B;
+            margin-bottom: 10px;
+        }
+        
+        .supply-label {
+            font-size: 1.1rem;
+            color: #20B2AA;
+            font-weight: 600;
+        }
+        
+        .supply-detail {
+            font-size: 0.9rem;
+            color: #2F4F4F;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #20B2AA;
+        }
+        
+        .section h3 {
+            color: #008B8B;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .urban-section {
+            background: linear-gradient(135deg, #F0F8FF, #E6F3FF);
+            border-left: 5px solid #1E90FF;
+        }
+        
+        .rural-section {
+            background: linear-gradient(135deg, #F0FFF0, #E8F5E8);
+            border-left: 5px solid #32CD32;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .benefits-list li {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00CED1;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .benefits-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0, 206, 209, 0.2);
+        }
+        
+        .benefits-list li::before {
+            content: '✨';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .coverage-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .coverage-item {
+            background: linear-gradient(45deg, #20B2AA, #48D1CC);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .coverage-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .coverage-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .progress-section {
+            background: linear-gradient(135deg, #F0FFFF, #E0FFFF);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            background: #E5E5E5;
+            border-radius: 25px;
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00CED1, #20B2AA);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: fillProgress 3s ease-out;
+        }
+        
+        @keyframes fillProgress {
+            from { width: 0%; }
+        }
+        
+        .quality-section {
+            background: linear-gradient(135deg, #FFFACD, #F0E68C);
+            border-left: 5px solid #DAA520;
+        }
+        
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .quality-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #DAA520;
+            transition: transform 0.3s ease;
+        }
+        
+        .quality-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .footer {
+            background: #008B8B;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .supply-number { font-size: 2rem; }
+            .header { padding: 30px 20px; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>అందరికీ సురక్షితమైన తాగునీరు</h1>
+            <div class="subtitle">కాళేశ్వరం ప్రాజెక్ట్ తాగునీటి విప్లవం</div>
+        </div>
+        
+        <div class="content">
+            <div class="supply-grid">
+                <div class="supply-card">
+                    <div class="supply-icon">🏙️</div>
+                    <div class="supply-number">30</div>
+                    <div class="supply-label">TMC పట్టణ సరఫరా</div>
+                    <div class="supply-detail">హైదరాబాద్ & సికింద్రాబాద్</div>
+                </div>
+                <div class="supply-card">
+                    <div class="supply-icon">🏘️</div>
+                    <div class="supply-number">10</div>
+                    <div class="supply-label">TMC గ్రామీణ సరఫరా</div>
+                    <div class="supply-detail">మిషన్ భగీరథ</div>
+                </div>
+                <div class="supply-card">
+                    <div class="supply-icon">👥</div>
+                    <div class="supply-number">1+</div>
+                    <div class="supply-label">కోటి మందికి తాగునీరు</div>
+                    <div class="supply-detail">పైపుల ద్వారా సరఫరా</div>
+                </div>
+            </div>
+            
+            <div class="section urban-section">
+                <h3>🏙️ పట్టణ తాగునీటi సరఫరా</h3>
+                <div class="progress-section">
+                    <h4 style="color: #008B8B; margin-bottom: 15px;">హైదరాబాద్ & సికింద్రాబాద్ నీటi సరఫరా</h4>
+                    <div style="margin-bottom: 15px;">
+                        <span>కేటాయింపు: 30 TMC</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;">లక్షలాది మందికి స్థిరమైన సరఫరా</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="benefits-list">
+                    <li>లక్షలాది మందికి రోజువారీ స్థిరమైన, శుభ్రమైన తాగునీరు</li>
+                    <li>పట్టణ ప్రాంతాలలో నీటి కొరత పూర్తిగా పరిష్కారం</li>
+                    <li>వాణిజ్య మరియు పారిశ్రామిక అవసరాలకు సరిపడా నీరు</li>
+                    <li>భవిష్యత్ పట్టణ విస్తరణకు తగిన నీటి భద్రత</li>
+                </ul>
+            </div>
+            
+            <div class="section rural-section">
+                <h3>🏘️ గ్రామీణ తాగునీటి సరఫరా - మిషన్ భగీరథ</h3>
+                <div class="coverage-stats">
+                    <div class="coverage-item">
+                        <div class="coverage-number">10</div>
+                        <div>TMC కేటాయింపు</div>
+                    </div>
+                    <div class="coverage-item">
+                        <div class="coverage-number">1+</div>
+                        <div>కోటి మంది ప్రయోజనం</div>
+                    </div>
+                    <div class="coverage-item">
+                        <div class="coverage-number">100%</div>
+                        <div>పైపుల ద్వారా సరఫరా</div>
+                    </div>
+                </div>
+                
+                <ul class="benefits-list">
+                    <li>సుమారు 1 కోటి మందికి పైపుల ద్వారా తాగునీరు సరఫరా</li>
+                    <li>తాగునీటi చొరవకు అత్యధిక విస్తీర్ణంలో అమలు</li>
+                    <li>గ్రామీణ ప్రాంతాలలో 24x7 నీటి లభ్యత</li>
+                    <li>దూర ప్రాంతాలకు కూడా నాణ్యమైన తాగునీరు చేరిక</li>
+                    <li>గ్రామీణ ఆరోగ్య సూచికలలో గణనీయ మెరుగుదల</li>
+                </ul>
+            </div>
+            
+            <div class="section quality-section">
+                <h3>💎 నీటి నాణ్యత మరియు ఆరోగ్య ప్రయోజనాలు</h3>
+                <div class="quality-grid">
+                    <div class="quality-card">
+                        <h4>🚫 ఫ్లోరైడ్ రహిత నీరు</h4>
+                        <p>దీర్ఘకాలిక ఫ్లోరైడ్ కాలుష్య సమస్యకు పరిష్కారం</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>🔬 శుద్ధ నీరు</h4>
+                        <p>అధిక నాణ్యత ప్రమాణాలకు అనుగుణమైన తాగునీరు</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>💪 ఆరోగ్య మెరుగుదల</h4>
+                        <p>నీటి వల్ల వచ్చే వ్యాధులలో గణనీయ తగ్గుదల</p>
+                    </div>
+                </div>
+                
+                <ul class="benefits-list">
+                    <li>దీర్ఘకాలిక నీటి కొరత మరియు ఫ్లోరైడ్ కాలుష్యానికి సమగ్ర పరిష్కారం</li>
+                    <li>నీటి వల్ల వచ్చే వ్యాధుల ప్రభావంలో గణనీయ తగ్గుదల</li>
+                    <li>గ్రామీణ మరియు పట్టణ ప్రాంతాలలో ఆరోగ్య సూచికల మెరుగుదల</li>
+                    <li>మహిళలు మరియు పిల్లలకు నీరు తీసుకురావడంలో శ్రమ తగ్గుదల</li>
+                    <li>ఫ్లోరోసిస్ వంటి వ్యాధులకు శాశ్వత పరిష్కారం</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>🚰 కాళేశ్వరం: ప్రతి చుక్క శుద్ధ నీరు, ప్రతి ఇంటికి ఆరోగ్యం 🙏</strong>
+        </div>
+    </div>
+</body>
+</html>
