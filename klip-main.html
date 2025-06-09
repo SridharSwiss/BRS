@@ -10,11 +10,15 @@
       --ipl-gold: #ffcc00;
       --ipl-silver: #eee;
     }
-    body { margin: 0; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; background: #fafbfc; color: #222; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: #fafbfc;
+      color: #222;
+    }
     header {
       background: var(--ipl-dark-blue);
       color: var(--ipl-gold);
-      padding: 0;
       position: relative;
       z-index: 1000;
     }
@@ -50,17 +54,20 @@
     .nav-menu li {
       margin: 0 4px;
     }
-    .nav-menu li a {
+    .nav-menu li button {
       color: var(--ipl-silver);
-      text-decoration: none;
+      background: none;
+      border: none;
       font-weight: 500;
       font-size: 1em;
       padding: 8px 14px;
       border-radius: 22px;
+      cursor: pointer;
       transition: color 0.25s, background-color 0.25s;
       display: block;
     }
-    .nav-menu li a:hover, .nav-menu li a:focus {
+    .nav-menu li button:hover, .nav-menu li button:focus,
+    .nav-menu li button.active {
       color: var(--ipl-dark-blue);
       background: var(--ipl-gold);
       outline: none;
@@ -97,6 +104,7 @@
         overflow: hidden;
         box-shadow: 0 3px 16px rgba(0,0,0,0.15);
         border-radius: 0 0 12px 12px;
+        width: 100%;
         transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
       }
       .nav-menu.open {
@@ -111,7 +119,6 @@
         display: flex;
       }
     }
-    /* Hamburger Animation */
     .nav-toggle.open .nav-bar:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
@@ -120,6 +127,31 @@
     }
     .nav-toggle.open .nav-bar:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
+    }
+    main {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 0 16px;
+      min-height: 60vh;
+    }
+    .tabcontent {
+      display: none;
+      width: 100%;
+      border: none;
+    }
+    .tabcontent.active {
+      display: block;
+    }
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      background: #fff;
+    }
+    @media (max-width: 800px) {
+      iframe {
+        height: 480px;
+      }
     }
   </style>
 </head>
@@ -134,41 +166,38 @@
       </button>
       <nav>
         <ul class="nav-menu" id="mainMenu">
-<div id="KLIP-INTRO" class="tabcontent active" style="display: block;">
-  <iframe src="klip-intro.html" style="width:100%;height:800px;border:none;"></iframe>
-</div>
-
-<div id="KLIP-AGRI" class="tabcontent">
-  <iframe src="klip-agri.html" style="width:100%;height:800px;border:none;"></iframe>
-</div>
-
-<div id="KLIP-Water" class="tabcontent">
-  <iframe src="klip-water.html" style="width:100%;height:800px;border:none;"></iframe>
-</div>
-
-<div id="KLIP-DW" class="tabcontent">
-  <iframe src="klip-dw.html" style="width:100%;height:800px;border:none;"></iframe>
-</div>
-
-<div id="KLIP-INDUSTRY" class="tabcontent">
-  <iframe src="klip-industry.html" style="width:100%;height:800px;border:none;"></iframe>
-</div>
-
-<div id="KLIP-ALLEG" class="tabcontent">
-  <iframe src="klip-alleg.html" style="width:100%;height:800px;border:none;"></iframe>
-</div>
+          <li><button class="tablinks active" onclick="openTab(event, 'KLIP-INTRO')">పరిచయం</button></li>
+          <li><button class="tablinks" onclick="openTab(event, 'KLIP-AGRI')">వ్యవసాయం</button></li>
+          <li><button class="tablinks" onclick="openTab(event, 'KLIP-WATER')">నీటి ఉపయోగం</button></li>
+          <li><button class="tablinks" onclick="openTab(event, 'KLIP-DW')">తాగు నీరు</button></li>
+          <li><button class="tablinks" onclick="openTab(event, 'KLIP-INDUSTRY')">పరిశ్రమలు</button></li>
+          <li><button class="tablinks" onclick="openTab(event, 'KLIP-ALLEG')">ఆరోపణలు</button></li>
         </ul>
       </nav>
     </div>
   </header>
-
   <main>
-    <!-- Tab contents as in your previous code, not shown here for brevity -->
-    <!-- ... -->
+    <div id="KLIP-INTRO" class="tabcontent active">
+      <iframe src="klip-intro.html" title="పరిచయం"></iframe>
+    </div>
+    <div id="KLIP-AGRI" class="tabcontent">
+      <iframe src="klip-agri.html" title="వ్యవసాయం"></iframe>
+    </div>
+    <div id="KLIP-WATER" class="tabcontent">
+      <iframe src="klip-water.html" title="నీటి ఉపయోగం"></iframe>
+    </div>
+    <div id="KLIP-DW" class="tabcontent">
+      <iframe src="klip-dw.html" title="తాగు నీరు"></iframe>
+    </div>
+    <div id="KLIP-INDUSTRY" class="tabcontent">
+      <iframe src="klip-industry.html" title="పరిశ్రమలు"></iframe>
+    </div>
+    <div id="KLIP-ALLEG" class="tabcontent">
+      <iframe src="klip-alleg.html" title="ఆరోపణలు"></iframe>
+    </div>
   </main>
-
   <script>
-    // Hamburger menu functionality
+    // Hamburger menu toggle
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('mainMenu');
     navToggle.addEventListener('click', function() {
@@ -177,8 +206,8 @@
       navToggle.setAttribute('aria-expanded', navMenu.classList.contains('open'));
     });
 
-    // Tab switching (adjusted for hamburger menu links)
-    function openTabDirect(evt, tabName) {
+    // Tab functionality
+    function openTab(evt, tabName) {
       document.querySelectorAll('.tabcontent').forEach(function(tc) {
         tc.classList.remove('active');
       });
