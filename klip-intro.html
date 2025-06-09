@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Stats</title>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>కాళేశ్వరం ప్రాజెక్ట్ వైభవం</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>కాళేశ్వరం - తాగునీటి భద్రత</title>
     <style>
         * {
             margin: 0;
@@ -17,417 +12,284 @@
         }
         
         body {
-            font-family: 'Noto Sans Telugu', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00CED1, #48D1CC);
             min-height: 100vh;
             padding: 20px;
-            line-height: 1.6;
         }
         
-        .infographic {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            backdrop-filter: blur(15px);
         }
         
         .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(45deg, #008B8B, #20B2AA);
             color: white;
+            padding: 40px;
             text-align: center;
-            padding: 50px 30px;
             position: relative;
-            overflow: hidden;
         }
         
         .header::before {
-            content: '';
+            content: '🚰';
+            font-size: 60px;
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" patternUnits="userSpaceOnUse" width="30" height="30"><path d="M15 0 Q20 7 15 15 Q10 22 15 30" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="2"/><path d="M0 10 Q5 17 0 25 Q-5 32 0 40" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="1.5"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
-            opacity: 0.4;
+            top: 20px;
+            left: 50px;
+            opacity: 0.3;
+            animation: drip 2s ease-in-out infinite;
         }
         
-        .header h1 {
-            font-size: 4em;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
-            position: relative;
-            z-index: 2;
+        .header::after {
+            content: '💧';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            opacity: 0.3;
+            animation: drip 2s ease-in-out infinite reverse;
         }
         
-        .header .subtitle {
-            font-size: 1.6em;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
+        @keyframes drip {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .header .description {
-            font-size: 1.2em;
-            opacity: 0.85;
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
         .content {
-            padding: 50px;
+            padding: 40px;
         }
         
-        .section {
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
-            font-size: 2.8em;
-            color: #1e3c72;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 700;
-            position: relative;
-            padding-bottom: 20px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 3px;
-        }
-        
-        .stats-grid {
+        .supply-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
+            margin: 30px 0;
         }
         
-        .stat-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 35px;
-            border-radius: 20px;
+        .supply-card {
+            background: linear-gradient(135deg, #E0FFFF, #F0FFFF);
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            transform: translateY(0);
-            transition: all 0.4s ease;
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+            border-left: 5px solid #00CED1;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .stat-card::before {
+        .supply-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 206, 209, 0.2);
+        }
+        
+        .supply-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: waterFlow 3s infinite;
         }
         
-        .stat-card:hover::before {
-            opacity: 1;
+        @keyframes waterFlow {
+            0% { top: -100%; }
+            100% { top: 100%; }
         }
         
-        .stat-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        .supply-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
         }
         
-        .stat-number {
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-bottom: 12px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
+        .supply-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #008B8B;
+            margin-bottom: 10px;
         }
         
-        .stat-label {
-            font-size: 1.3em;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
+        .supply-label {
+            font-size: 1.1rem;
+            color: #20B2AA;
             font-weight: 600;
         }
         
-        .records-section {
-            background: linear-gradient(135deg, #ff9a9e, #fecfef);
-            padding: 50px;
-            border-radius: 25px;
-            margin: 50px 0;
-            position: relative;
-            overflow: hidden;
+        .supply-detail {
+            font-size: 0.9rem;
+            color: #2F4F4F;
+            margin-top: 10px;
+            font-style: italic;
         }
         
-        .records-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.5;
-        }
-        
-        .record-item {
-            background: rgba(255, 255, 255, 0.9);
+        .section {
+            background: white;
+            border-radius: 15px;
             padding: 30px;
-            margin: 25px 0;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-left: 6px solid #ff6b6b;
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s ease;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #20B2AA;
         }
         
-        .record-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .record-title {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 12px;
+        .section h3 {
+            color: #008B8B;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .record-desc {
-            color: #555;
-            line-height: 1.7;
-            font-size: 1.1em;
+        .urban-section {
+            background: linear-gradient(135deg, #F0F8FF, #E6F3FF);
+            border-left: 5px solid #1E90FF;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        .rural-section {
+            background: linear-gradient(135deg, #F0FFF0, #E8F5E8);
+            border-left: 5px solid #32CD32;
         }
         
-        .feature-card {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white;
-            padding: 35px;
-            border-radius: 20px;
-            text-align: left;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+        .benefits-list {
+            list-style: none;
+            padding: 0;
         }
         
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: conic-gradient(from 0deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.1));
-            transition: all 0.6s ease;
-        }
-        
-        .feature-card:hover::before {
-            top: -150%;
-            left: -150%;
-        }
-        
-        .feature-card:hover {
-            transform: scale(1.03) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 3.5em;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .feature-title {
-            font-size: 1.7em;
-            font-weight: 700;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .feature-desc {
-            opacity: 0.95;
-            line-height: 1.6;
-            font-size: 1.1em;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .impact-section {
-            background: linear-gradient(135deg, #a8edea, #fed6e3);
-            padding: 50px;
-            border-radius: 25px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .impact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,15 61,35 85,35 67,50 73,74 50,59 27,74 33,50 15,35 39,35" fill="rgba(255,255,255,0.08)"/></svg>');
-            opacity: 0.3;
-        }
-        
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 35px;
-            margin-top: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .impact-item {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
+        .benefits-list li {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00CED1;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         
-        .impact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        .benefits-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0, 206, 209, 0.2);
         }
         
-        .impact-number {
-            font-size: 3em;
-            font-weight: 800;
-            color: #2c3e50;
-            margin-bottom: 12px;
+        .benefits-list li::before {
+            content: '✨';
+            margin-right: 15px;
+            font-size: 1.2rem;
         }
         
-        .impact-label {
-            color: #555;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-        
-        .technical-details {
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
-            padding: 50px;
-            border-radius: 25px;
-            margin: 50px 0;
-        }
-        
-        .detail-grid {
+        .coverage-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
         
-        .detail-item {
-            background: rgba(255, 255, 255, 0.9);
+        .coverage-item {
+            background: linear-gradient(45deg, #20B2AA, #48D1CC);
+            color: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
         
-        .detail-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        .coverage-item:hover {
+            transform: scale(1.05) rotate(2deg);
         }
         
-        .detail-title {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #2c3e50;
+        .coverage-number {
+            font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 10px;
         }
         
-        .detail-value {
-            font-size: 1.2em;
-            color: #e74c3c;
-            font-weight: 700;
+        .progress-section {
+            background: linear-gradient(135deg, #F0FFFF, #E0FFFF);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            background: #E5E5E5;
+            border-radius: 25px;
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00CED1, #20B2AA);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: fillProgress 3s ease-out;
+        }
+        
+        @keyframes fillProgress {
+            from { width: 0%; }
+        }
+        
+        .quality-section {
+            background: linear-gradient(135deg, #FFFACD, #F0E68C);
+            border-left: 5px solid #DAA520;
+        }
+        
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .quality-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #DAA520;
+            transition: transform 0.3s ease;
+        }
+        
+        .quality-card:hover {
+            transform: translateY(-5px);
         }
         
         .footer {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background: #008B8B;
             color: white;
             text-align: center;
-            padding: 40px;
-            font-size: 1.2em;
-            position: relative;
-        }
-        
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,30 50,50 Q75,70 100,50" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="2"/></svg>');
-            opacity: 0.3;
-        }
-        
-        .footer-content {
-            position: relative;
-            z-index: 1;
+            padding: 20px;
+            font-size: 1.1rem;
         }
         
         @media (max-width: 768px) {
-            .header h1 { font-size: 3em; }
-            .section-title { font-size: 2.2em; }
-            .stat-number { font-size: 2.8em; }
-            .content { padding: 30px; }
-            .records-section, .impact-section, .technical-details { padding: 30px; }
-        }
-        
-        .pulse {
-            animation: pulse 3s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .float {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            h1 { font-size: 2rem; }
+            .supply-number { font-size: 2rem; }
+            .header { padding: 30px 20px; }
+            .content { padding: 20px; }
         }
     </style>
 </head>
