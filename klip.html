@@ -86,13 +86,14 @@
       .tab button.tablinks { float: none; width: 100%; text-align: right; }
       .logo { font-size: 18px; padding: 8px 10px; }
     }
+    .hamburger:active { /* some style or even just outline: none; */ }
   </style>
 </head>
 <body>
 <div class="tab">
   <div class="logo">కాళేశ్వరం ప్రాజెక్ట్</div>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+<div class="hamburger" id="hamburger" tabindex="0" onclick="toggleMenu()" onkeypress="if(event.key==='Enter'){toggleMenu();}"> 
+  <span></span><span></span><span></span>
   </div>
   <div class="menu" id="menu">
     <button class="tablinks active" onclick="openTab(event, 'KLIP-INTRO')" id="defaultOpen">📖కాళేశ్వరం ప్రాజెక్ట్ - పరిచయం</button>
