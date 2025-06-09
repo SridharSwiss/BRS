@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>కాళేశ్వరం - నీటి కొరత పరిష్కారం</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1E90FF, #87CEEB);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #0047AB, #1E90FF);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '💧';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .header::after {
+            content: '🌊';
+            font-size: 60px;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .water-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .water-card {
+            background: linear-gradient(135deg, #E6F3FF, #F0F8FF);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border-left: 5px solid #1E90FF;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .water-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(30, 144, 255, 0.2);
+        }
+        
+        .water-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: wave 2s infinite;
+        }
+        
+        @keyframes wave {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .water-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .water-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0047AB;
+            margin-bottom: 10px;
+        }
+        
+        .water-label {
+            font-size: 1rem;
+            color: #1E90FF;
+            font-weight: 600;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #1E90FF;
+        }
+        
+        .section h3 {
+            color: #0047AB;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .groundwater-section {
+            background: linear-gradient(135deg, #E0F6FF, #F0FFFF);
+        }
+        
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .impact-list li {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00BFFF;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .impact-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.2);
+        }
+        
+        .impact-list li::before {
+            content: '💎';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .reservoir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .reservoir-item {
+            background: linear-gradient(45deg, #4169E1, #6495ED);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .reservoir-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .progress-section {
+            background: linear-gradient(135deg, #F0F8FF, #E6F3FF);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            background: #E5E5E5;
+            border-radius: 25px;
+            height: 25px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00BFFF, #1E90FF);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: fillWater 3s ease-out;
+        }
+        
+        @keyframes fillWater {
+            from { width: 0%; }
+        }
+        
+        .revival-section {
+            background: linear-gradient(135deg, #E0FFFF, #F0FFFF);
+            border-left: 5px solid #20B2AA;
+        }
+        
+        .rivers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .river-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #20B2AA;
+        }
+        
+        .footer {
+            background: #0047AB;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .water-number { font-size: 1.5rem; }
+            .header { padding: 30px 20px; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>నీటి కొరతకు అంతిమ పరిష్కారం</h1>
+            <div class="subtitle">కాళేశ్వరం ప్రాజెక్ట్ నీటి విప్లవం</div>
+        </div>
+        
+        <div class="content">
+            <div class="water-stats">
+                <div class="water-card">
+                    <div class="water-icon">🏞️</div>
+                    <div class="water-number">20</div>
+                    <div class="water-label">రిజర్వాయర్లు</div>
+                </div>
+                <div class="water-card">
+                    <div class="water-icon">💧</div>
+                    <div class="water-number">147.71</div>
+                    <div class="water-label">TMC నిల్వ సామర్థ్యం</div>
+                </div>
+                <div class="water-card">
+                    <div class="water-icon">📈</div>
+                    <div class="water-number">4+</div>
+                    <div class="water-label">మీటర్లు భూగర్భ జలాల పెరుగుదల</div>
+                </div>
+            </div>
+            
+            <div class="section groundwater-section">
+                <h3>🏔️ భూగర్భ జలాల రీఛార్జ్</h3>
+                <div class="progress-section">
+                    <h4 style="color: #0047AB; margin-bottom: 15px;">నీటిమట్టం పెరుగుదల స్థితి</h4>
+                    <div style="margin-bottom: 10px;">
+                        <span>సగటు పెరుగుదల: 4+ మీటర్లు</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;">అధిక పెరుగుదల</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <span>రిజర్వాయర్ల ప్రభావం</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%;">147.71 TMC నింపిన రిజర్వాయర్లు</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="impact-list">
+                    <li>20 రిజర్వాయర్ల ద్వారా గణనీయమైన భూగర్భ జలాల రీఛార్జ్</li>
+                    <li>కొన్ని ప్రాంతాల్లో నీటిమట్టం 4 మీటర్లకు మించి పెరుగుదల</li>
+                    <li>147.71 TMC నిల్వ సామర్థ్యంతో నిరంతర రీఛార్జ్</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3>🚰 బోరుబావుల పరిస్థితి మెరుగుదల</h3>
+                <div class="reservoir-grid">
+                    <div class="reservoir-item">
+                        <h4>కొత్త బోరుబావుల అవసరం</h4>
+                        <p>గణనీయంగా తగ్గింపు</p>
+                    </div>
+                    <div class="reservoir-item">
+                        <h4>పాత బోరుబావుల స్థితి</h4>
+                        <p>పునరుజ్జీవనం</p>
+                    </div>
+                    <div class="reservoir-item">
+                        <h4>నీటి లభ్యత</h4>
+                        <p>గణనీయ మెరుగుదల</p>
+                    </div>
+                </div>
+                
+                <ul class="impact-list">
+                    <li>మెరుగైన భూగర్భ జలాలతో కొత్త బోరుబావుల అవసరం తగ్గింది</li>
+                    <li>వాడుకలో లేని పాత బోరుబావులు మళ్ళీ నీరు ఇవ్వడం ప్రారంభించాయి</li>
+                    <li>రైతుల బోరుబావుల తవ్వే ఖర్చులలో గణనీయ పొదుపు</li>
+                </ul>
+            </div>
+            
+            <div class="section revival-section">
+                <h3>🌊 వాగుల మరియు చిన్న నదుల పునరుజ్జీవనం</h3>
+                <div class="rivers-grid">
+                    <div class="river-card">
+                        <h4>🏞️ హల్దీవాగు</h4>
+                        <p>మళ్ళీ ప్రవహిస్తోంది</p>
+                    </div>
+                    <div class="river-card">
+                        <h4>🌊 కుడెల్లివాగు</h4>
+                        <p>పునరుజ్జీవనం పొందింది</p>
+                    </div>
+                    <div class="river-card">
+                        <h4>💧 ఇతర వాగులు</h4>
+                        <p>క్రమంగా పునరుద్ధరణ</p>
+                    </div>
+                </div>
+                
+                <ul class="impact-list">
+                    <li>దశాబ్దాలుగా ఎండిపోయిన వాగులు మళ్ళీ ప్రవహించడం</li>
+                    <li>స్థానిక జీవవైవిధ్యం మరియు పర్యావరణ వ్యవస్థ పునరుద్ధరణ</li>
+                    <li>గ్రామీణ ప్రాంతాలలో నీటి లభ్యత గణనీయంగా మెరుగుదల</li>
+                    <li>వ్యవసాయేతర కార్యకలాపాలకు కూడా నీటి లభ్యత</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>💧 కాళేశ్వరం: నీటి కొరతకు శాశ్వత పరిష్కారం 🙏</strong>
+        </div>
+    </div>
+</body>
+</html>
