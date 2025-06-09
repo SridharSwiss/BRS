@@ -34,17 +34,53 @@
     .tabcontent.active {
       display: block;
     }
+      /* Responsive top menu with hamburger */
+.tab { position: relative; display: flex; align-items: center; padding: 0; }
+.logo { font-size: 20px; margin-right: auto; }
+.menu { display: flex; margin-left: auto; }
+.hamburger {
+  display: none; flex-direction: column; cursor: pointer; margin-left: 10px;
+  width: 32px; height: 32px; justify-content: center; align-items: center;
+}
+.hamburger span {
+  display: block; width: 26px; height: 4px; background: #2E8B57; margin: 4px 0; border-radius: 2px;
+  transition: 0.4s;
+}
+@media (max-width: 900px) {
+  .menu {
+    display: none;
+    position: absolute;
+    right: 0; top: 55px;
+    background: #f8f8f8;
+    flex-direction: column; width: 220px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    z-index: 99;
+    padding: 8px 0;
+    border-radius: 0 0 12px 12px;
+    text-align: right;
+  }
+  .menu.active { display: flex; }
+  .hamburger { display: flex; }
+  .tab button.tablinks { float: none; width: 100%; text-align: right; }
+  .logo { font-size: 18px; padding: 8px 10px; }
+}
   </style>
+
 </head>
 <body>
-  <div class="tab">
+<div class="tab">
+  <div class="logo" style="font-weight: bold; padding: 12px 18px; color:#2E8B57; float:left;">కాళేశ్వరం ప్రాజెక్ట్</div>
+  <div class="menu" id="menu">
     <button class="tablinks active" onclick="openTab(event, 'KLIP-INTRO')" id="defaultOpen">📖కాళేశ్వరం ప్రాజెక్ట్ - పరిచయం</button>
-    <button class="tablinks " onclick="openTab(event, 'KLIP-AGRI')">🌾 వ్యవసాయం</button>
+    <button class="tablinks" onclick="openTab(event, 'KLIP-AGRI')">🌾 వ్యవసాయం</button>
     <button class="tablinks" onclick="openTab(event, 'KLIP-Water')">💧 నీటి కొరత</button>
     <button class="tablinks" onclick="openTab(event, 'KLIP-DW')">🚰 తాగునీరు</button>
     <button class="tablinks" onclick="openTab(event, 'KLIP-INDUSTRY')">🏭 కాళేశ్వరం - పారిశ్రామిక అభివృద్ధి</button>
     <button class="tablinks" onclick="openTab(event, 'KLIP-ALLEG')">📝 ఆరోపణలు-వాస్తవాలు</button>
   </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
 
   <!-- KLIP-AGRI.html Content -->
  <div id="KLIP-INTRO" class="tabcontent active">
@@ -970,6 +1006,18 @@
       // Set the button active
       evt.currentTarget.classList.add('active');
     }
+    <script>
+function toggleMenu() {
+  var menu = document.getElementById('menu');
+  menu.classList.toggle('active');
+}
+// Optional: close menu on tab click (mobile)
+document.querySelectorAll('.tablinks').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('menu').classList.remove('active');
+  });
+});
+</script>
   </script>
 </body>
 </html>
