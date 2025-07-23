@@ -1,428 +1,435 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday KTR! 🎉</title>
+    <title>Happy Birthday K.T. Rama Rao</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
+
+```
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+        padding: 60px 0 40px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header h1 {
+        font-size: 3.5em;
+        font-weight: 700;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h2 {
+        font-size: 1.8em;
+        color: #fff;
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+
+    .birthday-icon {
+        font-size: 4em;
+        margin: 20px 0;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-30px); }
+        60% { transform: translateY(-15px); }
+    }
+
+    .wishes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+    }
+
+    .wish-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        border-left: 5px solid #ff6b6b;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .wish-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+    }
+
+    .wish-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .language-name {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .language-name::before {
+        content: '🎉';
+        margin-right: 10px;
+        font-size: 1.5em;
+    }
+
+    .wish-text {
+        font-size: 1.4em;
+        color: #34495e;
+        line-height: 1.6;
+        font-weight: 500;
+        text-align: center;
+        padding: 15px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 10px;
+        border: 2px solid #e8f4f8;
+    }
+
+    .quote-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 60px 0;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .quote {
+        font-size: 1.5em;
+        font-style: italic;
+        color: #fff;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .quote::before {
+        content: '"';
+        font-size: 3em;
+        color: #4ecdc4;
+        position: absolute;
+        left: -30px;
+        top: -10px;
+    }
+
+    .quote::after {
+        content: '"';
+        font-size: 3em;
+        color: #4ecdc4;
+        position: absolute;
+        right: -30px;
+        bottom: -40px;
+    }
+
+    .quote-author {
+        font-size: 1.1em;
+        color: #bdc3c7;
+        font-weight: 300;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 40px 0;
+        color: #fff;
+        font-size: 1.1em;
+    }
+
+    .celebration-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #ff6b6b;
+        animation: confetti-fall 3s linear infinite;
+    }
+
+    .confetti:nth-child(odd) {
+        background: #4ecdc4;
+        animation-delay: -1s;
+    }
+
+    .confetti:nth-child(3n) {
+        background: #45b7d1;
+        animation-delay: -2s;
+    }
+
+    @keyframes confetti-fall {
+        0% {
+            transform: translateY(-100vh) rotate(0deg);
+            opacity: 1;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        100% {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeInDown 1s ease-out;
-        }
-        
+    }
+
+    @media (max-width: 768px) {
         .header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d9de0);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
-            margin-bottom: 10px;
-        }
-        
-        .header .subtitle {
-            font-size: 1.2rem;
-            color: white;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        .birthday-emoji {
-            font-size: 4rem;
-            animation: bounce 2s infinite;
-            display: inline-block;
-            margin: 20px 0;
-        }
-        
-        .wishes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            font-size: 2.5em;
         }
         
         .wish-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 1s ease-out;
+            padding: 20px;
         }
         
-        .wish-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.25);
+        .wishes-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
         
-        .wish-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        .quote {
+            font-size: 1.2em;
         }
         
-        .wish-card:hover::before {
-            left: 100%;
+        .quote::before,
+        .quote::after {
+            display: none;
         }
-        
-        .language-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #ffd93d;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .wish-text {
-            font-size: 1.3rem;
-            color: white;
-            line-height: 1.6;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .transliteration {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-style: italic;
-            font-weight: 300;
-        }
-        
-        .celebration-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            backdrop-filter: blur(15px);
-        }
-        
-        .celebration-text {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-        
-        .party-button {
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .party-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #ff5252, #ffeb3b);
-        }
-        
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .floating-element {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(120deg); }
-            66% { transform: translateY(10px) rotate(240deg); }
-        }
-        
-        .wish-card:nth-child(odd) {
-            animation-delay: 0.2s;
-        }
-        
-        .wish-card:nth-child(even) {
-            animation-delay: 0.4s;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .wishes-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .wish-card {
-                padding: 20px;
-            }
-            
-            .wish-text {
-                font-size: 1.1rem;
-            }
-        }
-        
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #ffd93d;
-            animation: confetti-fall 3s linear infinite;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-    </style>
+    }
+</style>
+```
+
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element" style="top: 10%; left: 10%; animation-delay: 0s;">🎉</div>
-        <div class="floating-element" style="top: 20%; right: 15%; animation-delay: 1s;">🎂</div>
-        <div class="floating-element" style="bottom: 30%; left: 20%; animation-delay: 2s;">🎈</div>
-        <div class="floating-element" style="bottom: 20%; right: 10%; animation-delay: 3s;">✨</div>
-        <div class="floating-element" style="top: 50%; left: 5%; animation-delay: 4s;">🎊</div>
-        <div class="floating-element" style="top: 70%; right: 25%; animation-delay: 5s;">🎁</div>
+    <div class="celebration-bg">
+        <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="confetti" style="left: 20%; animation-delay: -0.5s;"></div>
+        <div class="confetti" style="left: 30%; animation-delay: -1s;"></div>
+        <div class="confetti" style="left: 40%; animation-delay: -1.5s;"></div>
+        <div class="confetti" style="left: 50%; animation-delay: -2s;"></div>
+        <div class="confetti" style="left: 60%; animation-delay: -2.5s;"></div>
+        <div class="confetti" style="left: 70%; animation-delay: -3s;"></div>
+        <div class="confetti" style="left: 80%; animation-delay: -3.5s;"></div>
+        <div class="confetti" style="left: 90%; animation-delay: -4s;"></div>
     </div>
 
-    <div class="container">
-        <div class="header">
-            <h1>Happy Birthday KTR!</h1>
-            <div class="birthday-emoji">🎉🎂🎈</div>
-            <p class="subtitle">Celebrating K. T. Rama Rao in 17 Beautiful Languages</p>
+```
+<div class="container">
+    <div class="header">
+        <div class="birthday-icon">🎂</div>
+        <h1>Happy Birthday</h1>
+        <h2>K. T. Rama Rao</h2>
+        <p style="color: #ecf0f1; font-size: 1.2em; margin-top: 20px;">
+            Celebrating a Visionary Leader, Tech Innovator, and People's Representative
+        </p>
+    </div>
+
+    <div class="quote-section">
+        <div class="quote">
+            Technology is not just about coding and algorithms; it's about solving real problems and improving lives.
+        </div>
+        <div class="quote-author">- K.T. Rama Rao</div>
+    </div>
+
+    <div class="wishes-grid">
+        <div class="wish-card">
+            <div class="language-name">Telugu</div>
+            <div class="wish-text">జన్మదిన శుభాకాంక్షలు, కేటీఆర్ గారు!</div>
         </div>
 
-        <div class="wishes-grid">
-            <div class="wish-card">
-                <div class="language-name">Telugu</div>
-                <div class="wish-text">జన్మదిన శుభాకాంక్షలు, కేటీఆర్ గారు!</div>
-                <div class="transliteration">Janmadina Shubhakankshalu, KTR garu!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Hindi</div>
-                <div class="wish-text">जन्मदिन मुबारक हो, केटीआर!</div>
-                <div class="transliteration">Janmadin Mubarak ho, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Tamil</div>
-                <div class="wish-text">இனிய பிறந்தநாள் வாழ்த்துக்கள், கேடிஆர்!</div>
-                <div class="transliteration">Iniya Pirandanala Valthukkal, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Kannada</div>
-                <div class="wish-text">ಜನ್ಮದಿನದ ಶುಭಾಶಯಗಳು, ಕೆಟಿಆರ್!</div>
-                <div class="transliteration">Janmadinada Shubhashayagalu, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Malayalam</div>
-                <div class="wish-text">ജന്മദിനാശംസകൾ, കെടിആർ!</div>
-                <div class="transliteration">Janmadinashamsakal, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Marathi</div>
-                <div class="wish-text">वाढदिवसाच्या हार्दिक शुभेच्छा, केटीआर!</div>
-                <div class="transliteration">Vadhdivsachya Hardik Shubhechha, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Bengali</div>
-                <div class="wish-text">শুভ জন্মদিন, কেটিআর!</div>
-                <div class="transliteration">Shubho Jonmodin, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Gujarati</div>
-                <div class="wish-text">જન્મદિવસની હાર્દિક શુભકામનાઓ, કેટીઆર!</div>
-                <div class="transliteration">Janmadivasani Hardik Shubhkamanao, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Punjabi</div>
-                <div class="wish-text">ਜਨਮਦਿਨ ਮੁਬਾਰਕ ਹੋਵੇ, ਕੇਟੀਆਰ!</div>
-                <div class="transliteration">Janmadin Mubarak Hove, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Odia</div>
-                <div class="wish-text">ଜନ୍ମଦିନର ହାର୍ଦ୍ଦିକ ଅଭିନନ୍ଦନ, କେଟିଆର!</div>
-                <div class="transliteration">Janmadinara Harddika Abhinandana, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Assamese</div>
-                <div class="wish-text">জন্মদিনৰ শুভকামনা, কেটিআৰ!</div>
-                <div class="transliteration">Janmadinor Shubhkamana, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Konkani</div>
-                <div class="wish-text">वाढदिवसाच्यो परबी, के.टी.आर!</div>
-                <div class="transliteration">Vaddivsachyo Parbi, K.T.R!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Urdu</div>
-                <div class="wish-text">سالگرہ مبارک ہو، کے ٹی آر!</div>
-                <div class="transliteration">Salgirah Mubarak ho, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Sanskrit</div>
-                <div class="wish-text">जन्मदिवसस्य शुभाशयाः, के.टी.आर!</div>
-                <div class="transliteration">Janmadivasasya Shubhashayah, K.T.R!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Kashmiri</div>
-                <div class="wish-text">زاہ رُت مُبارک، کے ٹی آر!</div>
-                <div class="transliteration">Zah Rut Mubarak, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Sindhi</div>
-                <div class="wish-text">جنم ڏينهن مبارڪ، ڪي ٽي آر!</div>
-                <div class="transliteration">Janam Din Mubarak, KTR!</div>
-            </div>
-
-            <div class="wish-card">
-                <div class="language-name">Manipuri (Meitei)</div>
-                <div class="wish-text">ꯄꯣꯛꯅꯨꯡ ꯅꯣꯡꯃꯥꯏ ꯄꯨꯛꯅꯤꯡ ꯆꯤꯡꯁꯤꯟꯅꯤ, ꯀꯦ. ꯇꯤ. ꯑꯥꯔ!</div>
-                <div class="transliteration">Poknung Nongmai Pukning Chingsinni, K.T.R!</div>
-            </div>
+        <div class="wish-card">
+            <div class="language-name">Hindi</div>
+            <div class="wish-text">जन्मदिन मुबारक हो, केटीआर!</div>
         </div>
 
-        <div class="celebration-section">
-            <p class="celebration-text">🌟 Celebrating a visionary leader who bridges cultures and languages! 🌟</p>
-            <button class="party-button" onclick="createConfetti()">🎉 Start the Party! 🎉</button>
+        <div class="wish-card">
+            <div class="language-name">Tamil</div>
+            <div class="wish-text">இனிய பிறந்தநாள் வாழ்த்துக்கள், கேடிஆர்!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Kannada</div>
+            <div class="wish-text">ಜನ್ಮದಿನದ ಶುಭಾಶಯಗಳು, ಕೆಟಿಆರ್!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Malayalam</div>
+            <div class="wish-text">ജന്മദിനാശംസകൾ, കെടിആർ!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Marathi</div>
+            <div class="wish-text">वाढदिवसाच्या हार्दिक शुभेच्छा, केटीआर!</div>
         </div>
     </div>
 
-    <script>
-        function createConfetti() {
-            const colors = ['#ff6b6b', '#ffd93d', '#6bcf7f', '#4d9de0', '#ff8a65', '#ba68c8'];
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 3 + 's';
-                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 5000);
-                }, i * 100);
-            }
-        }
+    <div class="quote-section">
+        <div class="quote">
+            Good governance is about being accessible, accountable, and responsive to people's needs.
+        </div>
+        <div class="quote-author">- K.T. Rama Rao</div>
+    </div>
 
-        // Auto-create some confetti on load
-        window.addEventListener('load', () => {
-            setTimeout(createConfetti, 2000);
-        });
+    <div class="wishes-grid">
+        <div class="wish-card">
+            <div class="language-name">Bengali</div>
+            <div class="wish-text">শুভ জন্মদিন, কেটিআর!</div>
+        </div>
 
-        // Add hover effects for wish cards
-        document.querySelectorAll('.wish-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
+        <div class="wish-card">
+            <div class="language-name">Gujarati</div>
+            <div class="wish-text">જન્મદિવસની હાર્દિક શુભકામનાઓ, કેટીઆર!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Punjabi</div>
+            <div class="wish-text">ਜਨਮਦਿਨ ਮੁਬਾਰਕ ਹੋਵੇ, ਕੇਟੀਆਰ!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Odia</div>
+            <div class="wish-text">ଜନ୍ମଦିନର ହାର୍ଦ୍ଦିକ ଅଭିନନ୍ଦନ, କେଟିଆର!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Assamese</div>
+            <div class="wish-text">জন্মদিনৰ শুভকামনা, কেটিআৰ!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Konkani</div>
+            <div class="wish-text">वाढदिवसाच्यो परबी, के.टी.आर!</div>
+        </div>
+    </div>
+
+    <div class="quote-section">
+        <div class="quote">
+            Innovation thrives when we create an ecosystem that encourages entrepreneurship and supports startups.
+        </div>
+        <div class="quote-author">- K.T. Rama Rao</div>
+    </div>
+
+    <div class="wishes-grid">
+        <div class="wish-card">
+            <div class="language-name">Urdu</div>
+            <div class="wish-text">سالگرہ مبارک ہو، کے ٹی آر!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Sanskrit</div>
+            <div class="wish-text">जन्मदिवसस्य शुभाशयाः, के.टी.आर!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Kashmiri</div>
+            <div class="wish-text">زاہ رُت مُبارک، کے ٹی آر!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Sindhi</div>
+            <div class="wish-text">جنم ڏينهن مبارڪ، ڪي ٽي آر!</div>
+        </div>
+
+        <div class="wish-card">
+            <div class="language-name">Manipuri (Meitei)</div>
+            <div class="wish-text">ꯄꯣꯛꯅꯨꯡ ꯅꯣꯡꯃꯥꯏ ꯄꯨꯛꯅꯤꯡ ꯆꯤꯡꯁꯤꯟꯅꯤ, ꯀꯦ. ꯇꯤ. ꯑꯥꯔ!</div>
+        </div>
+    </div>
+
+    <div class="quote-section">
+        <div class="quote">
+            The future belongs to those who embrace change, adapt quickly, and never stop learning.
+        </div>
+        <div class="quote-author">- K.T. Rama Rao</div>
+    </div>
+
+    <div class="footer">
+        <p>🎊 Wishing you continued success, good health, and happiness! 🎊</p>
+        <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+            A tribute from admirers across India and beyond
+        </p>
+    </div>
+</div>
+
+<script>
+    // Add more dynamic confetti
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f39c12', '#e74c3c'];
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        document.querySelector('.celebration-bg').appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+
+    // Create confetti periodically
+    setInterval(createConfetti, 300);
+
+    // Add hover effects to cards
+    document.querySelectorAll('.wish-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
         });
-    </script>
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+</script>
+```
+
 </body>
 </html>
