@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday K.T. Rama Rao</title>
+    <title>Happy Birthday K.T. Rama Rao - BRS Leadership</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #e91e63 0%, #ad1457 30%, #880e4f 70%, #4a148c 100%);
             min-height: 100vh;
             color: #333;
             overflow-x: hidden;
@@ -25,39 +25,59 @@
             padding: 20px;
         }
 
-        .header {
-            text-align: center;
-            padding: 60px 0 40px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+        .brs-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
             margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(233, 30, 99, 0.3);
+            border: 3px solid #e91e63;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        .brs-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #e91e63, #ad1457, #880e4f);
         }
 
-        .header h2 {
-            font-size: 1.8em;
-            color: #fff;
-            font-weight: 300;
+        .party-logo {
+            text-align: center;
             margin-bottom: 20px;
+        }
+
+        .party-logo::before {
+            content: '🏛️';
+            font-size: 3em;
+            color: #e91e63;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .brs-title {
+            text-align: center;
+            font-size: 1.2em;
+            color: #ad1457;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-content {
+            text-align: center;
         }
 
         .birthday-icon {
             font-size: 4em;
             margin: 20px 0;
             animation: bounce 2s infinite;
+            filter: hue-rotate(320deg) saturate(1.2);
         }
 
         @keyframes bounce {
@@ -66,20 +86,115 @@
             60% { transform: translateY(-15px); }
         }
 
+        .main-title {
+            font-size: 3.8em;
+            font-weight: 800;
+            background: linear-gradient(45deg, #e91e63, #ad1457, #880e4f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.3);
+        }
+
+        .sub-title {
+            font-size: 2.2em;
+            color: #ad1457;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .designation {
+            font-size: 1.3em;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .tribute-banner {
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        }
+
+        .quote-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+            border: 2px solid rgba(233, 30, 99, 0.3);
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e91e63, #ad1457, #880e4f);
+        }
+
+        .quote {
+            font-size: 1.6em;
+            font-style: italic;
+            color: #2c3e50;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 4em;
+            color: #e91e63;
+            position: absolute;
+            left: -40px;
+            top: -15px;
+            font-family: serif;
+        }
+
+        .quote::after {
+            content: '"';
+            font-size: 4em;
+            color: #e91e63;
+            position: absolute;
+            right: -40px;
+            bottom: -50px;
+            font-family: serif;
+        }
+
+        .quote-author {
+            font-size: 1.2em;
+            color: #ad1457;
+            font-weight: 600;
+        }
+
         .wishes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
         }
 
         .wish-card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
             transition: all 0.3s ease;
-            border-left: 5px solid #ff6b6b;
+            border: 3px solid transparent;
+            background-clip: padding-box;
             position: relative;
             overflow: hidden;
         }
@@ -90,91 +205,136 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+            bottom: 0;
+            background: linear-gradient(135deg, #e91e63, #ad1457, #880e4f);
+            z-index: -1;
+            margin: -3px;
+            border-radius: inherit;
+        }
+
+        .wish-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e91e63, #ad1457, #880e4f);
+            z-index: 1;
         }
 
         .wish-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(233, 30, 99, 0.3);
         }
 
         .language-name {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 15px;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #ad1457;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .language-name::before {
-            content: '🎉';
-            margin-right: 10px;
-            font-size: 1.5em;
+            content: '🌏';
+            margin-right: 12px;
+            font-size: 1.8em;
+            filter: hue-rotate(320deg);
         }
 
         .wish-text {
-            font-size: 1.4em;
-            color: #34495e;
-            line-height: 1.6;
-            font-weight: 500;
-            text-align: center;
-            padding: 15px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 10px;
-            border: 2px solid #e8f4f8;
-        }
-
-        .quote-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .quote {
             font-size: 1.5em;
-            font-style: italic;
-            color: #fff;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-radius: 12px;
+            border: 2px solid #e91e63;
             position: relative;
         }
 
-        .quote::before {
-            content: '"';
-            font-size: 3em;
-            color: #4ecdc4;
-            position: absolute;
-            left: -30px;
-            top: -10px;
+        .special-tribute {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+            border-radius: 25px;
+            padding: 60px;
+            margin: 80px 0;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(26, 35, 126, 0.4);
+            border: 3px solid #e91e63;
+            position: relative;
         }
 
-        .quote::after {
-            content: '"';
-            font-size: 3em;
-            color: #4ecdc4;
+        .special-tribute::before {
+            content: '';
             position: absolute;
-            right: -30px;
-            bottom: -40px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #e91e63, #ad1457, #880e4f);
         }
 
-        .quote-author {
-            font-size: 1.1em;
-            color: #bdc3c7;
-            font-weight: 300;
+        .tribute-title {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .tribute-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 2px solid rgba(233, 30, 99, 0.3);
+        }
+
+        .tribute-text {
+            font-size: 1.4em;
+            line-height: 1.8;
+            color: #e3f2fd;
+            margin-bottom: 30px;
+        }
+
+        .tribute-text.italic {
+            font-style: italic;
+            color: #f8bbd9;
+        }
+
+        .tribute-highlight {
+            font-size: 1.5em;
+            line-height: 1.8;
+            color: #fff;
+            font-weight: 700;
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(45deg, #e91e63, #ad1457);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        .tribute-signature {
+            margin-top: 35px;
+            font-size: 1.3em;
+            color: #f8bbd9;
+            font-weight: 600;
         }
 
         .footer {
             text-align: center;
-            padding: 40px 0;
+            padding: 50px 0;
             color: #fff;
-            font-size: 1.1em;
+            font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(233, 30, 99, 0.3);
         }
 
         .celebration-bg {
@@ -189,20 +349,26 @@
 
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ff6b6b;
-            animation: confetti-fall 3s linear infinite;
+            width: 12px;
+            height: 12px;
+            background: #e91e63;
+            animation: confetti-fall 4s linear infinite;
+            border-radius: 2px;
         }
 
         .confetti:nth-child(odd) {
-            background: #4ecdc4;
+            background: #ad1457;
             animation-delay: -1s;
         }
 
         .confetti:nth-child(3n) {
-            background: #45b7d1;
+            background: #880e4f;
             animation-delay: -2s;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #f8bbd9;
+            animation-delay: -1.5s;
         }
 
         @keyframes confetti-fall {
@@ -216,52 +382,92 @@
             }
         }
 
+        .brs-pattern {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .brs-pattern::before {
+            content: 'BRS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 800;
+            font-size: 1.2em;
+            color: rgba(233, 30, 99, 0.3);
+            letter-spacing: 2px;
+        }
+
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5em;
+            .main-title {
+                font-size: 2.8em;
             }
             
             .wish-card {
-                padding: 20px;
+                padding: 25px;
             }
             
             .wishes-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
             
             .quote {
-                font-size: 1.2em;
+                font-size: 1.3em;
             }
             
             .quote::before,
             .quote::after {
                 display: none;
             }
+            
+            .special-tribute {
+                padding: 40px 20px;
+            }
+            
+            .tribute-title {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="celebration-bg">
-        <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="confetti" style="left: 20%; animation-delay: -0.5s;"></div>
-        <div class="confetti" style="left: 30%; animation-delay: -1s;"></div>
-        <div class="confetti" style="left: 40%; animation-delay: -1.5s;"></div>
-        <div class="confetti" style="left: 50%; animation-delay: -2s;"></div>
-        <div class="confetti" style="left: 60%; animation-delay: -2.5s;"></div>
-        <div class="confetti" style="left: 70%; animation-delay: -3s;"></div>
-        <div class="confetti" style="left: 80%; animation-delay: -3.5s;"></div>
-        <div class="confetti" style="left: 90%; animation-delay: -4s;"></div>
+        <div class="confetti" style="left: 5%; animation-delay: 0s;"></div>
+        <div class="confetti" style="left: 15%; animation-delay: -0.5s;"></div>
+        <div class="confetti" style="left: 25%; animation-delay: -1s;"></div>
+        <div class="confetti" style="left: 35%; animation-delay: -1.5s;"></div>
+        <div class="confetti" style="left: 45%; animation-delay: -2s;"></div>
+        <div class="confetti" style="left: 55%; animation-delay: -2.5s;"></div>
+        <div class="confetti" style="left: 65%; animation-delay: -3s;"></div>
+        <div class="confetti" style="left: 75%; animation-delay: -3.5s;"></div>
+        <div class="confetti" style="left: 85%; animation-delay: -4s;"></div>
+        <div class="confetti" style="left: 95%; animation-delay: -4.5s;"></div>
     </div>
 
     <div class="container">
-        <div class="header">
-            <div class="birthday-icon">🎂</div>
-            <h1>Happy Birthday</h1>
-            <h2>K. T. Rama Rao</h2>
-            <p style="color: #ecf0f1; font-size: 1.2em; margin-top: 20px;">
-                Celebrating a Visionary Leader, Tech Innovator, and People's Representative
-            </p>
+        <div class="brs-header">
+            <div class="brs-pattern"></div>
+            <div class="party-logo"></div>
+            <div class="brs-title">Bharat Rashtra Samithi</div>
+            <div class="header-content">
+                <div class="birthday-icon">🎂</div>
+                <h1 class="main-title">Happy Birthday</h1>
+                <h2 class="sub-title">K. T. Rama Rao</h2>
+                <div class="designation">
+                    Working President, BRS | IT & Industries Minister, Telangana<br>
+                    MLA Sircilla | Tech Visionary & Public Servant
+                </div>
+                <div class="tribute-banner">
+                    🌟 Celebrating a Dynamic Leader Who Transformed Telangana into India's Tech Hub 🌟
+                </div>
+            </div>
         </div>
 
         <div class="quote-section">
@@ -342,6 +548,28 @@
             </div>
         </div>
 
+        <div class="special-tribute">
+            <h3 class="tribute-title">A Special Birthday Tribute</h3>
+            <div class="tribute-content">
+                <p class="tribute-text italic">
+                    Dear KTR Sir, on this special day, we celebrate not just another year of your remarkable journey, but the transformative impact you've had on millions of lives. Your visionary leadership has turned Telangana into a beacon of technological advancement and progressive governance.
+                </p>
+                <p class="tribute-text">
+                    From spearheading the IT revolution in Hyderabad to championing innovative policies like Rythu Bandhu and Mission Kakatiya, you've consistently demonstrated that governance can be both compassionate and forward-thinking. Your approachable demeanor on social media, coupled with your ability to connect with people from all walks of life, exemplifies modern leadership at its finest.
+                </p>
+                <p class="tribute-text">
+                    As the architect of T-Hub, T-Works, and countless initiatives that have positioned Telangana as India's startup destination, you've proven that dreams backed by determination can reshape entire ecosystems. Your commitment to transparency, innovation, and inclusive development continues to inspire a new generation of public servants.
+                </p>
+                <div class="tribute-highlight">
+                    May this new year bring you continued success in your mission to build a better tomorrow. Here's to many more years of your inspiring leadership, unwavering dedication to public service, and the positive change you bring to every life you touch.
+                </div>
+                <div class="tribute-signature">
+                    <strong>Happy Birthday, KTR Sir! 🙏✨</strong><br>
+                    <em>With deepest respect and admiration from BRS supporters everywhere</em>
+                </div>
+            </div>
+        </div>
+
         <div class="quote-section">
             <div class="quote">
                 Innovation thrives when we create an ecosystem that encourages entrepreneurship and supports startups.
@@ -384,43 +612,64 @@
         </div>
 
         <div class="footer">
-            <p>🎊 Wishing you continued success, good health, and happiness! 🎊</p>
+            <p>🌸 Celebrating Leadership • Innovation • Public Service 🌸</p>
+            <p style="margin-top: 20px; font-size: 1em; opacity: 0.9;">
+                <strong>Bharat Rashtra Samithi Switzerland 🇨🇭🇮🇳</strong> • A tribute to our Working President
+            </p>
             <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
-                A tribute from admirers across India and beyond
+                From supporters, well-wishers, and admirers across Telangana and India
             </p>
         </div>
     </div>
 
     <script>
-        // Add more dynamic confetti
+        // Enhanced confetti with BRS colors
         function createConfetti() {
             const confetti = document.createElement('div');
             confetti.className = 'confetti';
             confetti.style.left = Math.random() * 100 + '%';
-            confetti.style.animationDelay = Math.random() * 3 + 's';
-            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.animationDelay = Math.random() * 4 + 's';
+            confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
             
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f39c12', '#e74c3c'];
+            const colors = ['#e91e63', '#ad1457', '#880e4f', '#f8bbd9', '#ec407a'];
             confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Vary confetti shapes
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
             
             document.querySelector('.celebration-bg').appendChild(confetti);
             
             setTimeout(() => {
                 confetti.remove();
-            }, 5000);
+            }, 7000);
         }
 
-        // Create confetti periodically
-        setInterval(createConfetti, 300);
+        // Create confetti more frequently
+        setInterval(createConfetti, 200);
 
-        // Add hover effects to cards
+        // Enhanced hover effects for cards
         document.querySelectorAll('.wish-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.transform = 'translateY(-12px) scale(1.03)';
+                this.style.boxShadow = '0 30px 60px rgba(233, 30, 99, 0.4)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 15px 35px rgba(233, 30, 99, 0.2)';
+            });
+        });
+
+        // Add subtle animations to quotes
+        document.querySelectorAll('.quote-section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.01)';
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
             });
         });
     </script>
