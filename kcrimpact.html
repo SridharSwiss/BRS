@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hyderabad/Telangana Development — Financial Metrics, Leadership & Decade View</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0b0f1a; --panel:#11172a; --ink:#e6eefc; --sub:#a9b7d9; --accent:#6ae3ff;
+      --accent2:#7cffb7; --accent3:#ffc15a; --danger:#ff6a6a; --ok:#69f0ae;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg); color:var(--ink);
+    }
+    .wrap{max-width:1200px; margin:0 auto; padding:24px}
+    header{display:flex; gap:16px; align-items:center; padding:12px 0; border-bottom:1px solid #1e2742}
+    header .title{flex:1}
+    h1{margin:0; font-size:28px; letter-spacing:.2px}
+    .subtitle{color:var(--sub); font-size:14px}
+    .badge{padding:6px 10px; background:#182038; border:1px solid #293257; border-radius:999px; font-size:12px}
+    .grid{display:grid; gap:16px}
+    @media(min-width:900px){ .grid{grid-template-columns:repeat(12,1fr)} }
+    .card{
+      background:var(--panel); border:1px solid #1d2440; border-radius:14px; padding:16px;
+      box-shadow:0 8px 24px rgba(0,0,0,.35)
+    }
+    .card h2{margin:0 0 10px 0; font-size:18px}
+    .card h3{margin:0 0 10px 0; font-size:16px; color:var(--sub)}
+    .chip{display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid #2a355e; color:var(--sub); font-size:12px}
+    .legend{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 2px}
+    .legend .key{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--sub)}
+    .dot{width:10px; height:10px; border-radius:50%}
+    .dot.accent{background:var(--accent)}
+    .dot.accent2{background:var(--accent2)}
+    .dot.accent3{background:var(--accent3)}
+    .dot.ink{background:var(--ink)}
+    .table{
+      width:100%; border-collapse:collapse; font-size:13px; overflow:auto;
+    }
+    .table th,.table td{
+      text-align:left; padding:10px 8px; border-bottom:1px solid #1e2742;
+      white-space:nowrap
+    }
+    .table th{color:var(--sub); font-weight:600}
+    .kpi{
+      display:flex; gap:14px; flex-wrap:wrap; margin:8px 0 4px
+    }
+    .kpi .item{
+      flex:1 1 160px; padding:12px; border:1px dashed #2b365f; border-radius:12px; background:#0f1426
+    }
+    .kpi .item .label{color:var(--sub); font-size:12px}
+    .kpi .item .val{font-size:18px; margin-top:4px}
+    .spark{height:48px; width:100%; background:linear-gradient(90deg,#1a2443,transparent 80%); border-radius:8px; position:relative; overflow:hidden}
+    .spark svg{position:absolute; top:0; left:0}
+    .footnote{color:#8ea1ce; font-size:12px}
+    .compare{
+      display:grid; gap:10px; grid-template-columns:repeat(2,1fr)
+    }
+    @media(max-width:700px){ .compare{grid-template-columns:1fr} }
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; background:#152046; border:1px solid #2a355e; color:var(--ink); font-size:12px}
+    .callout{padding:12px; border-left:3px solid var(--accent); background:#0f162a; border-radius:10px}
+    .muted{color:var(--sub)}
+    .divider{height:1px; background:#1e2742; margin:12px 0}
+    .btns{display:flex; gap:8px; flex-wrap:wrap}
+    .btn{padding:10px 12px; border-radius:10px; background:#162041; border:1px solid #293257; color:var(--ink); font-size:12px; cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,#1b7fff,#6ae3ff); color:#06101f; border:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Hyderabad/Telangana development — financials, leadership, and decade lens</h1>
+        <div class="subtitle">McKinsey-grade clarity, Gen Z visuals. Crisp. No fluff.</div>
+      </div>
+      <div class="badge">Updated: FY24 snapshot</div>
+    </header>
+
+    <!-- Overview KPIs -->
+    <section class="card" style="grid-column:1/-1">
+      <h2>Headline pulse</h2>
+      <div class="kpi">
+        <div class="item">
+          <div class="label">Economic scale (GSDP, ₹ lakh crore)</div>
+          <div class="val">~14.5 (FY24 provisional)</div>
+          <div class="spark">
+            <!-- simple sparkline path -->
+            <svg viewBox="0 0 100 48" preserveAspectRatio="none">
+              <polyline points="0,40 12,36 24,34 36,30 48,26 60,22 72,18 84,14 96,10"
+                        fill="none" stroke="#6ae3ff" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="item">
+          <div class="label">Per capita income (₹)</div>
+          <div class="val">~3,12,000–3,17,000 (FY23–FY24)</div>
+          <div class="spark">
+            <svg viewBox="0 0 100 48" preserveAspectRatio="none">
+              <polyline points="0,42 20,38 40,34 60,28 80,22 100,18" fill="none" stroke="#7cffb7" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="item">
+          <div class="label">Sector mix (GSVA)</div>
+          <div class="val">Services ~61%, Industry ~21%, Agri ~18 (FY22)</div>
+          <div class="spark">
+            <svg viewBox="0 0 100 48" preserveAspectRatio="none">
+              <polyline points="0,30 50,24 100,18" fill="none" stroke="#ffc15a" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="item">
+          <div class="label">Debt-to-GSDP (%)</div>
+          <div class="val">~26.8 (FY23)</div>
+          <div class="spark">
+            <svg viewBox="0 0 100 48" preserveAspectRatio="none">
+              <polyline points="0,22 25,24 50,26 75,27 100,28" fill="none" stroke="#e6eefc" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="footnote">Indicative figures for quick comprehension; detailed audited values may vary by official releases.</div>
+    </section>
+
+    <!-- Year-by-year metrics with CM & Party -->
+    <section class="grid">
+      <div class="card" style="grid-column:1/9">
+        <h2>Year-over-year financials (with leadership)</h2>
+        <div class="legend">
+          <div class="key"><span class="dot accent"></span> GSDP (₹ lakh crore)</div>
+          <div class="key"><span class="dot accent2"></span> Per capita income (₹)</div>
+          <div class="key"><span class="dot accent3"></span> Own tax revenue (₹ crore)</div>
+          <div class="key"><span class="dot ink"></span> Debt-to-GSDP (%)</div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>GSDP</th>
+              <th>PCI</th>
+              <th>Sector mix</th>
+              <th>Own tax</th>
+              <th>Debt/GSDP</th>
+              <th>Capex share</th>
+              <th>CM</th>
+              <th>Party</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2014–15</td>
+              <td>5.06</td>
+              <td>1,24,104</td>
+              <td>Agri ~16%, Ind ~21%, Serv ~63%</td>
+              <td>29,288</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2015–16</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2016–17</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2017–18</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2018–19</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2019–20</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2020–21</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2021–22</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Agri ~18%, Ind ~21%, Serv ~61%</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+            </tr>
+            <tr>
+              <td>2022–23</td>
+              <td>13.27</td>
+              <td>~3,17,000</td>
+              <td>Services-led</td>
+              <td>1,12,004 (FY22)</td>
+              <td>26.8%</td>
+              <td>~26.6%</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>BRS</td>
+            </tr>
+            <tr>
+              <td>2023–24</td>
+              <td>14.50</td>
+              <td>3,12,398</td>
+              <td>Services-led</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>A. Revanth Reddy (from Dec 2023)</td>
+              <td>INC</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <div class="callout">
+          Compact insight: Economy nearly tripled since formation; incomes climbed sharply; services anchor growth. Capex and own-tax mobilization were strong through the 2014–2023 period; watch borrowing dynamics in the current term.
+        </div>
+      </div>
+
+      <!-- Mini charts panel -->
+      <div class="card" style="grid-column:9/13">
+        <h2>Infographic panel</h2>
+        <h3>Scale & prosperity</h3>
+        <div class="pill"><span class="dot accent"></span> GSDP grew from ~₹5.06L cr (FY15) → ~₹14.5L cr (FY24)</div>
+        <div class="pill"><span class="dot accent2"></span> PCI exceeded national average by FY23–FY24</div>
+        <h3 style="margin-top:12px">Fiscal stance</h3>
+        <div class="pill"><span class="dot ink"></span> Debt/GSDP ~26.8% (FY23) with renewed revenue surplus after COVID</div>
+        <div class="pill"><span class="dot accent3"></span> High capex share vs state peers across multiple years</div>
+      </div>
+    </section>
+
+    <!-- Sector drill-down -->
+    <section class="grid">
+      <div class="card" style="grid-column:1/7">
+        <h2>Sector engine (GSVA)</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Sector</th>
+              <th>FY15 → FY23</th>
+              <th>Recent YoY ('22 → '23)</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Agriculture & allied</td>
+              <td>~41,700 → ~1,05,000 ₹ cr</td>
+              <td>~+12%</td>
+              <td>Irrigation expansion; rural income supports</td>
+            </tr>
+            <tr>
+              <td>Industry</td>
+              <td>~1,04,000 → ~2,36,000 ₹ cr</td>
+              <td>~+10%</td>
+              <td>TS-iPASS; manufacturing & construction momentum</td>
+            </tr>
+            <tr>
+              <td>Services</td>
+              <td>~2,86,000 → ~7,63,000 ₹ cr</td>
+              <td>~+18%</td>
+              <td>IT, logistics, urban services lead</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footnote">Illustrative figures for communication; verify with latest State Economic Survey for precision.</div>
+      </div>
+      <div class="card" style="grid-column:7/13">
+        <h2>Leadership timeline</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Chief minister</th>
+              <th>Party</th>
+              <th>Economic posture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jun 2014 – Dec 2023</td>
+              <td>K. Chandrashekar Rao</td>
+              <td>TRS/BRS</td>
+              <td>High capex, strong own-tax, services-led expansion</td>
+            </tr>
+            <tr>
+              <td>Dec 2023 – present</td>
+              <td>A. Revanth Reddy</td>
+              <td>INC</td>
+              <td>Continuity on services; borrowing mix evolving</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Decade-by-decade comparison -->
+    <section class="card" style="grid-column:1/-1">
+      <h2>Decade-by-decade view since independence (high level)</h2>
+      <div class="compare">
+        <div>
+          <h3>1950s–1960s</h3>
+          <p class="muted">Hyderabad as fiscal anchor; Telangana’s revenue strength contrasted within the merged state; integration dynamics shaped allocations.</p>
+        </div>
+        <div>
+          <h3>1970s–1980s</h3>
+          <p class="muted">Urban services concentrated in Hyderabad; regional investment gaps persisted, laying groundwork for future demands.</p>
+        </div>
+        <div>
+          <h3>1990s–2000s</h3>
+          <p class="muted">Liberalization boosted IT/services; distribution debates intensified, strengthening the economic case for statehood.</p>
+        </div>
+        <div>
+          <h3>2010s</h3>
+          <p class="muted">Post-2014 formation: outperformance vs national averages on GSDP and PCI; capex-forward approach; services dominance with agri/industry lift.</p>
+        </div>
+        <div>
+          <h3>2020s</h3>
+          <p class="muted">Services-led resilience; manageable debt metrics; revenue surplus re-emerging post-pandemic; leadership transition in late 2023.</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="callout">Quick take: Scale up fast, incomes up, services lead. Infrastructure-first stance and strong tax mobilization underpin resilience.</div>
+      <div class="btns" style="margin-top:10px">
+        <button class="btn primary">Download as PDF</button>
+        <button class="btn">Toggle dark/light</button>
+        <button class="btn">Share snapshot</button>
+      </div>
+    </section>
+
+    <!-- Micro guidance -->
+    <section class="card" style="grid-column:1/-1">
+      <h2>Notes for readers</h2>
+      <ul style="list-style:none; padding-left:0; margin:0">
+        <li class="muted">• Figures are simplified for quick comprehension; consult official Telangana Budget, State Economic Survey, and RBI/CSO releases for definitive values.</li>
+        <li class="muted">• Year rows with “—” indicate data to be inserted from the latest published sources.</li>
+        <li class="muted">• Hyderabad’s role is embedded within state-level services and industry metrics.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
