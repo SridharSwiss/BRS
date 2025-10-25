@@ -1,0 +1,403 @@
+import React, { useState } from ‘react’;
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from ‘recharts’;
+import { TrendingUp, Users, DollarSign, Building2, Factory, ChevronRight, Crown, Calendar } from ‘lucide-react’;
+
+const TelanganaGrowthDashboard = () => {
+const [activeTab, setActiveTab] = useState(‘overview’);
+
+// Chief Ministers Data
+const chiefMinisters = [
+{
+name: “K. Chandrashekar Rao (KCR)”,
+party: “BRS (TRS)”,
+period: “Jun 2, 2014 - Dec 6, 2023”,
+years: “9.5 years”,
+color: “#FF6B9D”,
+achievements: “Average GSDP growth: 12.7%”
+},
+];
+
+// Year-over-Year Growth Data
+const yoyData = [
+{ year: ‘2014-15’, gsdp: 391.75, perCapita: 124, cm: ‘KCR’, party: ‘BRS’, growth: 11.2 },
+{ year: ‘2015-16’, gsdp: 430.60, perCapita: 142, cm: ‘KCR’, party: ‘BRS’, growth: 9.9 },
+{ year: ‘2016-17’, gsdp: 497.40, perCapita: 165, cm: ‘KCR’, party: ‘BRS’, growth: 15.5 },
+{ year: ‘2017-18’, gsdp: 571.50, perCapita: 187, cm: ‘KCR’, party: ‘BRS’, growth: 14.9 },
+{ year: ‘2018-19’, gsdp: 656.90, perCapita: 213, cm: ‘KCR’, party: ‘BRS’, growth: 14.9 },
+{ year: ‘2019-20’, gsdp: 729.50, perCapita: 234, cm: ‘KCR’, party: ‘BRS’, growth: 11.1 },
+{ year: ‘2020-21’, gsdp: 767.90, perCapita: 242, cm: ‘KCR’, party: ‘BRS’, growth: 5.3 },
+{ year: ‘2021-22’, gsdp: 975.90, perCapita: 305, cm: ‘KCR’, party: ‘BRS’, growth: 27.1 },
+{ year: ‘2022-23’, gsdp: 1311.00, perCapita: 322, cm: ‘KCR’, party: ‘BRS’, growth: 34.3 },
+{ year: ‘2023-24’, gsdp: 1501.00, perCapita: 347, cm: ‘RR’, party: ‘INC’, growth: 14.5 },
+{ year: ‘2024-25E’, gsdp: 1650.00, perCapita: 368, cm: ‘RR’, party: ‘INC’, growth: 9.9 }
+];
+
+// Decade Comparison (Since Independence)
+const decadeComparison = [
+{ decade: ‘1950s-60s’, label: ‘50s-60s’, gdp: 8.5, status: ‘Part of AP’, highlight: ‘Industrial base setup’ },
+{ decade: ‘1970s-80s’, label: ‘70s-80s’, gdp: 12.3, status: ‘Part of AP’, highlight: ‘IT seeds planted’ },
+{ decade: ‘1990s-2000s’, label: ‘90s-00s’, gdp: 28.7, status: ‘Part of AP’, highlight: ‘IT boom begins’ },
+{ decade: ‘2000s-2010s’, label: ‘00s-10s’, gdp: 52.4, status: ‘Part of AP’, highlight: ‘Pre-statehood growth’ },
+{ decade: ‘2014-2024’, label: ‘2014-24’, gdp: 142.6, status: ‘Telangana State’, highlight: ‘Separate state era’ }
+];
+
+// Sector Distribution
+const sectorData = [
+{ name: ‘Services’, value: 65.7, color: ‘#FF6B9D’ },
+{ name: ‘Industry’, value: 18.5, color: ‘#4ECDC4’ },
+{ name: ‘Agriculture’, value: 15.8, color: ‘#95E1D3’ }
+];
+
+// Key Metrics
+const keyMetrics = [
+{
+icon: TrendingUp,
+label: ‘GSDP (2024-25)’,
+value: ‘₹16.5L Cr’,
+change: ‘+12.5%’,
+color: ‘from-pink-500 to-rose-500’
+},
+{
+icon: Users,
+label: ‘Per Capita Income’,
+value: ‘₹3.47L’,
+change: ‘Highest in India’,
+color: ‘from-cyan-500 to-blue-500’
+},
+{
+icon: Building2,
+label: ‘IT Exports (FY24)’,
+value: ‘₹2.68L Cr’,
+change: ‘+11.2%’,
+color: ‘from-purple-500 to-indigo-500’
+},
+{
+icon: Factory,
+label: ‘FDI (2019-24)’,
+value: ‘$9.84 Bn’,
+change: ‘Major hub’,
+color: ‘from-green-500 to-emerald-500’
+}
+];
+
+// Comparative Growth
+const compareData = [
+{ metric: ‘GSDP Growth’, telangana: 12.7, india: 10.5 },
+{ metric: ‘Per Capita’, telangana: 347, india: 212 },
+{ metric: ‘IT Contribution’, telangana: 98, india: 15 },
+{ metric: ‘Services %’, telangana: 65.7, india: 54.3 }
+];
+
+return (
+<div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-4 md:p-8">
+{/* Header */}
+<div className="max-w-7xl mx-auto mb-8">
+<div className="text-center mb-6">
+<h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-2">
+Telangana Rising 📈
+</h1>
+<p className="text-gray-400 text-sm md:text-base">A Decade of Transformation | 2014-2025</p>
+</div>
+
+```
+    {/* Chief Ministers Timeline */}
+    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-6 border border-white/20">
+      <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <Crown className="text-yellow-400" size={24} />
+        Leadership Timeline
+      </h2>
+      <div className="grid md:grid-cols-2 gap-4">
+        {chiefMinisters.map((cm, idx) => (
+          <div key={idx} className="bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 border border-white/10">
+            <div className="flex items-start justify-between mb-2">
+              <div>
+                <h3 className="font-bold text-lg">{cm.name}</h3>
+                <p className="text-sm text-gray-300">{cm.party}</p>
+              </div>
+              <span className="text-xs bg-white/20 px-3 py-1 rounded-full">{cm.years}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+              <Calendar size={14} />
+              {cm.period}
+            </div>
+            <p className="text-xs text-cyan-300">{cm.achievements}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Key Metrics */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      {keyMetrics.map((metric, idx) => (
+        <div key={idx} className={`bg-gradient-to-br ${metric.color} rounded-2xl p-4 shadow-lg transform hover:scale-105 transition-all`}>
+          <metric.icon className="mb-2" size={24} />
+          <p className="text-xs opacity-80 mb-1">{metric.label}</p>
+          <p className="text-2xl font-bold mb-1">{metric.value}</p>
+          <p className="text-xs opacity-90">{metric.change}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Tabs */}
+    <div className="flex gap-2 mb-6 overflow-x-auto">
+      {['overview', 'yoy', 'sectors', 'decades'].map(tab => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(tab)}
+          className={`px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+            activeTab === tab 
+              ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' 
+              : 'bg-white/10 text-gray-300 hover:bg-white/20'
+          }`}
+        >
+          {tab.charAt(0).toUpperCase() + tab.slice(1)}
+        </button>
+      ))}
+    </div>
+
+    {/* Content Sections */}
+    {activeTab === 'overview' && (
+      <div className="space-y-6">
+        {/* GSDP Growth Chart */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <h3 className="text-xl font-bold mb-4">GSDP Growth Trajectory (₹ Thousands Cr)</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={yoyData}>
+              <defs>
+                <linearGradient id="gsdpGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#FF6B9D" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#FF6B9D" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
+              <XAxis dataKey="year" stroke="#fff" />
+              <YAxis stroke="#fff" />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#1e1e1e', border: '1px solid #444' }}
+                formatter={(value, name) => {
+                  if (name === 'gsdp') return [`₹${value}K Cr`, 'GSDP'];
+                  return value;
+                }}
+              />
+              <Area type="monotone" dataKey="gsdp" stroke="#FF6B9D" fillOpacity={1} fill="url(#gsdpGradient)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Telangana vs India Comparison */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <h3 className="text-xl font-bold mb-4">Telangana vs India Average</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={compareData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
+              <XAxis dataKey="metric" stroke="#fff" />
+              <YAxis stroke="#fff" />
+              <Tooltip contentStyle={{ backgroundColor: '#1e1e1e', border: '1px solid #444' }} />
+              <Legend />
+              <Bar dataKey="telangana" fill="#FF6B9D" name="Telangana" />
+              <Bar dataKey="india" fill="#4ECDC4" name="India Avg" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    )}
+
+    {activeTab === 'yoy' && (
+      <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+        <h3 className="text-xl font-bold mb-4">Year-over-Year Performance</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-white/20">
+                <th className="text-left p-3">Year</th>
+                <th className="text-left p-3">CM</th>
+                <th className="text-left p-3">Party</th>
+                <th className="text-right p-3">GSDP (₹K Cr)</th>
+                <th className="text-right p-3">Per Capita (₹K)</th>
+                <th className="text-right p-3">Growth %</th>
+              </tr>
+            </thead>
+            <tbody>
+              {yoyData.map((row, idx) => (
+                <tr key={idx} className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                  <td className="p-3 font-medium">{row.year}</td>
+                  <td className="p-3">
+                    <span className="text-xs bg-white/20 px-2 py-1 rounded">{row.cm}</span>
+                  </td>
+                  <td className="p-3">
+                    <span className={`text-xs px-2 py-1 rounded ${
+                      row.party === 'BRS' ? 'bg-pink-500/30' : 'bg-cyan-500/30'
+                    }`}>
+                      {row.party}
+                    </span>
+                  </td>
+                  <td className="p-3 text-right font-mono">{row.gsdp.toFixed(2)}</td>
+                  <td className="p-3 text-right font-mono">{row.perCapita}</td>
+                  <td className="p-3 text-right">
+                    <span className={`font-bold ${row.growth > 10 ? 'text-green-400' : 'text-yellow-400'}`}>
+                      +{row.growth}%
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* Per Capita Growth Chart */}
+        <div className="mt-6">
+          <h4 className="text-lg font-semibold mb-3">Per Capita Income Growth (₹ Thousands)</h4>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={yoyData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
+              <XAxis dataKey="year" stroke="#fff" />
+              <YAxis stroke="#fff" />
+              <Tooltip contentStyle={{ backgroundColor: '#1e1e1e', border: '1px solid #444' }} />
+              <Line type="monotone" dataKey="perCapita" stroke="#4ECDC4" strokeWidth={3} dot={{ fill: '#4ECDC4', r: 5 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    )}
+
+    {activeTab === 'sectors' && (
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Pie Chart */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <h3 className="text-xl font-bold mb-4">Sector Contribution to GSVA</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={sectorData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, value }) => `${name}: ${value}%`}
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {sectorData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Sector Details */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <h3 className="text-xl font-bold mb-4">Sector Highlights</h3>
+          <div className="space-y-4">
+            <div className="bg-gradient-to-r from-pink-500/20 to-pink-500/10 p-4 rounded-xl">
+              <h4 className="font-bold text-lg mb-2">🏢 Services (65.7%)</h4>
+              <p className="text-sm text-gray-300">IT/ITES exports: ₹2.68L Cr (FY24)</p>
+              <p className="text-sm text-gray-300">Hyderabad - India's 2nd largest IT hub</p>
+            </div>
+            <div className="bg-gradient-to-r from-cyan-500/20 to-cyan-500/10 p-4 rounded-xl">
+              <h4 className="font-bold text-lg mb-2">🏭 Industry (18.5%)</h4>
+              <p className="text-sm text-gray-300">Pharma: ₹7,500 Cr investments</p>
+              <p className="text-sm text-gray-300">Manufacturing hub with 35 SEZs</p>
+            </div>
+            <div className="bg-gradient-to-r from-green-500/20 to-green-500/10 p-4 rounded-xl">
+              <h4 className="font-bold text-lg mb-2">🌾 Agriculture (15.8%)</h4>
+              <p className="text-sm text-gray-300">Employs 47.3% of population</p>
+              <p className="text-sm text-gray-300">4% growth in 2023-24</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {activeTab === 'decades' && (
+      <div className="space-y-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <h3 className="text-xl font-bold mb-4">Decade-by-Decade Comparison (Since Independence)</h3>
+          <ResponsiveContainer width="100%" height={350}>
+            <BarChart data={decadeComparison}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
+              <XAxis dataKey="label" stroke="#fff" />
+              <YAxis stroke="#fff" label={{ value: 'Average GDP Growth %', angle: -90, position: 'insideLeft', fill: '#fff' }} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#1e1e1e', border: '1px solid #444' }}
+                content={({ active, payload }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0].payload;
+                    return (
+                      <div className="bg-slate-800 p-3 rounded-lg border border-white/20">
+                        <p className="font-bold">{data.decade}</p>
+                        <p className="text-cyan-400">Growth: {data.gdp}%</p>
+                        <p className="text-gray-300 text-sm">{data.status}</p>
+                        <p className="text-pink-400 text-sm">{data.highlight}</p>
+                      </div>
+                    );
+                  }
+                  return null;
+                }}
+              />
+              <Bar dataKey="gdp" fill="#FF6B9D" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Timeline Cards */}
+        <div className="grid md:grid-cols-5 gap-4">
+          {decadeComparison.map((decade, idx) => (
+            <div 
+              key={idx} 
+              className={`rounded-xl p-4 border-2 ${
+                decade.status === 'Telangana State' 
+                  ? 'bg-gradient-to-br from-pink-500/30 to-purple-500/30 border-pink-500' 
+                  : 'bg-white/5 border-white/20'
+              }`}
+            >
+              <h4 className="font-bold text-lg mb-2">{decade.label}</h4>
+              <p className="text-3xl font-bold text-cyan-400 mb-2">{decade.gdp}%</p>
+              <p className="text-xs text-gray-300 mb-2">{decade.status}</p>
+              <p className="text-xs text-yellow-400">{decade.highlight}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Key Insight */}
+        <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-2xl p-6 border border-yellow-500/30">
+          <h4 className="font-bold text-xl mb-2">💡 Key Insight</h4>
+          <p className="text-lg">
+            Telangana's growth in the decade since statehood (2014-24) has been <span className="text-yellow-400 font-bold">2.7x faster</span> than any previous decade, 
+            showcasing the power of focused governance and strategic investments.
+          </p>
+        </div>
+      </div>
+    )}
+
+    {/* Footer Stats */}
+    <div className="mt-8 bg-white/5 rounded-2xl p-6 border border-white/10">
+      <h3 className="text-lg font-bold mb-4 text-center">Quick Facts 2024-25</h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div>
+          <p className="text-2xl font-bold text-pink-400">5.1%</p>
+          <p className="text-xs text-gray-400">Share in India's GDP</p>
+        </div>
+        <div>
+          <p className="text-2xl font-bold text-cyan-400">12.9%</p>
+          <p className="text-xs text-gray-400">10-Yr Avg Growth</p>
+        </div>
+        <div>
+          <p className="text-2xl font-bold text-purple-400">778K</p>
+          <p className="text-xs text-gray-400">IT/ITES Employees</p>
+        </div>
+        <div>
+          <p className="text-2xl font-bold text-green-400">#3</p>
+          <p className="text-xs text-gray-400">Per Capita Income Rank</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+);
+};
+
+export default TelanganaGrowthDashboard;
