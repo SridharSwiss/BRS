@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRS · GHMC 2026 — Content Strategy Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b1b22;--ink-soft:#45454f;--paper:#fbfaf7;--paper-2:#f2eef0;
+    --rule:#e0d3da;--rule-soft:#ece3e8;
+    --brs:#b5176b;--brs-deep:#8a1051;--brs-soft:#f7dcea;--brs-tint:#fbeef4;
+    --inc:#15489e;--good:#1f7a4d;--warn:#c47a14;--bad:#b23b2e;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper-2);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.6;}
+  .sheet{max-width:960px;margin:32px auto;background:var(--paper);padding:0 0 56px;box-shadow:0 18px 50px -28px rgba(80,10,45,.4);}
+  .label{font-family:"IBM Plex Sans",sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:600;}
+  .pad{padding:0 64px;}
+  .masthead{background:var(--brs);color:#fff;padding:46px 64px 36px;}
+  .masthead .kick{font-family:"IBM Plex Sans",sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:600;opacity:.85;margin-bottom:18px;}
+  h1{font-family:"Fraunces",serif;font-weight:900;font-size:40px;line-height:1.05;letter-spacing:-.015em;margin:0 0 14px;}
+  .masthead .stand{font-size:17px;max-width:64ch;margin:0;opacity:.96;}
+  section{margin-top:38px;}
+  h2{font-family:"Fraunces",serif;font-weight:700;font-size:24px;letter-spacing:-.01em;margin:0 0 4px;color:var(--brs-deep);}
+  h2 .n{font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:700;color:var(--brs);letter-spacing:.04em;margin-right:9px;}
+  h3{font-family:"Fraunces",serif;font-weight:600;font-size:17.5px;margin:22px 0 4px;color:var(--ink);}
+  .sub{color:var(--ink-soft);font-size:14.5px;margin:0 0 16px;font-family:"IBM Plex Sans",sans-serif;}
+  p{margin:0 0 14px;}
+  strong{font-weight:600;}
+  .bl{background:var(--brs-tint);border:1px solid var(--brs-soft);border-left:4px solid var(--brs);border-radius:0 6px 6px 0;padding:16px 22px;margin:0 0 8px;}
+  .bl .label{color:var(--brs);display:block;margin-bottom:6px;}
+  .bl p{margin:0;font-size:16px;}
+  table{width:100%;border-collapse:collapse;margin:16px 0 8px;font-size:13.5px;}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--rule-soft);vertical-align:top;}
+  thead th{font-family:"IBM Plex Sans",sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:600;border-bottom:1.5px solid var(--brs);}
+  td.k{font-weight:600;}
+  td .t{font-family:"IBM Plex Sans",sans-serif;font-size:12.5px;color:var(--ink-soft);}
+  tr:nth-child(even) td{background:#faf6f8;}
+  .conf{font-family:"IBM Plex Sans",sans-serif;font-size:11px;font-weight:600;white-space:nowrap;}
+  ul{margin:10px 0;padding-left:20px;}li{margin-bottom:7px;}
+  ul.clean{list-style:none;padding:0;}ul.clean li{position:relative;padding-left:24px;}
+  ul.clean li:before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--brs);}
+  .pill{font-family:"IBM Plex Sans",sans-serif;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--brs-soft);color:var(--brs-deep);white-space:nowrap;}
+  .pill.b{background:#dde6f3;color:var(--inc);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  .card{border:1px solid var(--rule-soft);border-radius:8px;padding:16px 18px;background:#fff;}
+  .card h4{font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:700;margin:0 0 4px;color:var(--brs-deep);text-transform:uppercase;letter-spacing:.04em;}
+  .card .why{font-size:13px;color:var(--ink-soft);margin:0 0 8px;}
+  .card ul{margin:0;font-size:13px;}
+  .guard{background:#eef1f6;border:1px solid #dbe2ef;border-radius:6px;padding:16px 20px;margin:16px 0;}
+  .guard .label{color:var(--inc);display:block;margin-bottom:7px;}
+  .guard li{font-size:13.5px;color:var(--ink-soft);}
+  .legendbar{font-family:"IBM Plex Sans",sans-serif;font-size:12px;color:var(--ink-soft);margin:6px 0 0;}
+  .sources{margin-top:36px;border-top:1px solid var(--rule);padding-top:18px;font-family:"IBM Plex Sans",sans-serif;font-size:11.5px;color:var(--ink-soft);}
+  @media(max-width:760px){.pad,.masthead{padding-left:22px;padding-right:22px;}.sheet{margin:0;}h1{font-size:29px;}.grid2{grid-template-columns:1fr;}table{font-size:12.5px;}}
+  @media print{body{background:#fff;}.sheet{box-shadow:none;margin:0;}section,table,.card,.grid2{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="kick">Campaign Content Strategy · Internal Playbook</div>
+    <h1>BRS for GHMC 2026<br>Content &amp; Communications Strategy</h1>
+    <p class="stand">A shareable-first content plan to defend Brand Hyderabad, turn HYDRAA fear and the city's stall into votes, and win the bread-and-butter civic argument division by division.</p>
+  </header>
+
+  <div class="pad">
+
+  <!-- 0 -->
+  <section>
+    <h2><span class="n">00</span>Bottom line</h2>
+    <div class="bl">
+      <span class="label">The one-sentence strategy</span>
+      <p><strong>"We built this city — they're bulldozing it."</strong> Every piece of content should ladder up to one of two emotions: <strong>pride</strong> in what BRS built for Hyderabad, or <strong>fear/anger</strong> at what Congress is doing to it — and then land on the one civic problem in front of <em>that</em> voter, in <em>their</em> division.</p>
+    </div>
+    <p>GHMC is a <strong>municipal</strong> election, not a state one. That changes everything: voters here decide on garbage, drains, water, traffic and demolitions far more than on GSDP. So this strategy pairs the big emotional contrast (record vs. bulldozer) with a relentless <strong>hyperlocal</strong> layer — content tailored to each of the 150 divisions' actual problems.</p>
+    <p class="legendbar">Confidence tags used below: 🟢 high (sourced/verified) · 🟡 medium (directional) · 🔴 assumption (validate locally).</p>
+  </section>
+
+  <!-- 1 -->
+  <section>
+    <h2><span class="n">01</span>Objectives &amp; success metrics</h2>
+    <table>
+      <thead><tr><th style="width:26%">Objective</th><th style="width:40%">What it means</th><th>How we measure it</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Own the civic conversation</td><td class="t">Be the loudest credible voice on HYDRAA, water, drains and traffic.</td><td class="t">Share-of-voice vs BJP &amp; Congress on each issue; trending hashtags</td></tr>
+        <tr><td class="k">Convert fear into intent</td><td class="t">Turn HYDRAA/demolition anxiety into a reason to vote BRS.</td><td class="t">Sentiment shift in HYDRAA-affected wards; survey intent</td></tr>
+        <tr><td class="k">Defend &amp; expand the base</td><td class="t">Hold core divisions, grow among IT/youth and middle-class homeowners.</td><td class="t">Persona-level reach &amp; engagement; first-time-voter follows</td></tr>
+        <tr><td class="k">Power the ground game</td><td class="t">Arm every candidate/corporator with ready content for their division.</td><td class="t">Division-kits downloaded/used; volunteer sign-ups; WhatsApp group growth</td></tr>
+        <tr><td class="k">Stay un-debunkable</td><td class="t">Every claim sourced, so no story can be turned against us.</td><td class="t">Zero fact-check losses; rapid-response time &lt; 2 hrs</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2><span class="n">02</span>The battleground</h2>
+    <p>GHMC has <strong>150 divisions</strong> across the city. In the last election the field split four ways — BRS, BJP, AIMIM and a marginal Congress. The dynamics have now inverted: <strong>Congress holds the state</strong> (incumbency to defend <em>and</em> attack), <strong>BJP is pushing hard</strong> on a Hindutva-plus-anti-incumbency line, and <strong>AIMIM anchors the Old City</strong>. <span class="conf">🟡</span></p>
+    <ul class="clean">
+      <li><strong>vs Congress</strong> — attack the record: HYDRAA, IT/jobs decline, broken guarantees, Kancha Gachibowli. This is our main front.</li>
+      <li><strong>vs BJP</strong> — compete on development credibility and "outsiders don't know this city"; avoid getting dragged onto purely communal terrain.</li>
+      <li><strong>vs AIMIM</strong> — Old City is largely theirs; focus our energy on the IT corridor, West, East and peripheral growth belts where seats are winnable.</li>
+    </ul>
+    <p><strong>The opening:</strong> Congress is governing the city through demolition and uncertainty. That hands BRS a unifying, non-communal, pocket-and-home issue that cuts across caste and religion — <em>the safety of your home and the future of your job.</em></p>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2><span class="n">03</span>Who we're talking to — voter segments</h2>
+    <p class="sub">Six personas. Each gets its own issue, channel and message. Don't blur them.</p>
+    <table>
+      <thead><tr><th style="width:17%">Persona</th><th style="width:19%">Where</th><th style="width:24%">Top issues</th><th style="width:18%">Primary channels</th><th>Core message</th></tr></thead>
+      <tbody>
+        <tr><td class="k">IT / young professional</td><td class="t">Gachibowli, Madhapur, Kondapur, Kukatpally, Nanakramguda</td><td class="t">Jobs slowdown, traffic, Kancha Gachibowli, flooding</td><td class="t">Instagram, X, YouTube, Reddit</td><td class="t">"We made you the IT capital. They're letting it slip — and bulldozing your campus's forest."</td></tr>
+        <tr><td class="k">Middle-class homeowner</td><td class="t">Citywide colonies, lake-belt layouts</td><td class="t">HYDRAA demolition fear, property value, property tax</td><td class="t">WhatsApp, Facebook, RWAs</td><td class="t">"You built your home legally. Under them, no home is safe."</td></tr>
+        <tr><td class="k">Urban poor / basti</td><td class="t">Bastis citywide, Musi belt</td><td class="t">Demolitions/displacement, 2BHK, water, welfare</td><td class="t">Ground, WhatsApp, vernacular video</td><td class="t">"Under KCR you had dignity and a 2BHK. Now you're homeless."</td></tr>
+        <tr><td class="k">Trader / MSME</td><td class="t">Begum Bazaar, General Bazaar, market clusters</td><td class="t">Demolitions, business slowdown, civic neglect</td><td class="t">WhatsApp groups, Facebook</td><td class="t">"A frozen city is a frozen shop. We kept Hyderabad open for business."</td></tr>
+        <tr><td class="k">Women voters</td><td class="t">Across all segments</td><td class="t">Water, safety, health (Basti Dawakhana), demolition trauma</td><td class="t">Facebook, WhatsApp, door-to-door</td><td class="t">"Clinics, water and dignity at your door — not bulldozers."</td></tr>
+        <tr><td class="k">Student / first-time voter</td><td class="t">HCU, OU, campuses, hostels</td><td class="t">Kancha Gachibowli, environment, jobs, free expression</td><td class="t">Instagram, YouTube, X</td><td class="t">"They sent bulldozers and police to your campus. Remember that."</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <h2><span class="n">04</span>Content pillars</h2>
+    <p class="sub">Five pillars. Every post belongs to one. Rough mix: 30% Pride · 30% Contrast · 25% Hyperlocal · 15% Vision.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>Pillar 1 — Garv / Pride: "The City We Built" <span class="pill">30%</span></h4>
+        <p class="why">Why: pride is our moat. It reminds voters the good things they use daily are BRS-made — and frames Congress as a custodian, not a creator.</p>
+        <strong style="font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;">Clusters:</strong>
+        <ul>
+          <li>IT capital — exports ₹57k cr → ₹2.41L cr, 9 lakh jobs, Apple/Google/Amazon</li>
+          <li>The roads — SRDP flyovers, Durgam Cheruvu, the Metro</li>
+          <li>Homes &amp; clinics — 2BHK, Basti Dawakhana, Mission Bhagiratha</li>
+          <li>Brand Hyderabad — global recognition, lakes, festivals</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Pillar 2 — Bhay / The Bulldozer Govt <span class="pill">30%</span></h4>
+        <p class="why">Why: our sharpest emotional weapon. HYDRAA touches every homeowner; the Hitler remark hands us the "mindset" frame.</p>
+        <strong style="font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;">Clusters:</strong>
+        <ul>
+          <li>HYDRAA victim testimony (verified, consented) — homes razed, court stays ignored</li>
+          <li>Kancha Gachibowli — SC's "restore forest or jail officials"</li>
+          <li>Lagacharla — midnight raids, internet shutdown</li>
+          <li>The "Hitler" mindset — the CM's own words, condemned across parties</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Pillar 3 — Rozmarra / "Fix My Basti" <span class="pill">25%</span></h4>
+        <p class="why">Why: GHMC is won on civic basics. This pillar is hyperlocal, division-by-division, and never goes stale.</p>
+        <strong style="font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;">Clusters:</strong>
+        <ul>
+          <li>Drains &amp; monsoon flooding (the SNDP that was shelved)</li>
+          <li>Garbage &amp; sanitation; potholes &amp; roads</li>
+          <li>Drinking water &amp; sewage; streetlights</li>
+          <li>Traffic &amp; parking; stray dogs; property tax</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Pillar 4 — Giravat / "The Stalled City" <span class="pill b">part of Contrast</span></h4>
+        <p class="why">Why: the data spine. Turns "vibes" of decline into hard, sourced numbers — strongest with IT/middle-class voters.</p>
+        <strong style="font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;">Clusters:</strong>
+        <ul>
+          <li>IT jobs down to ⅓; export growth halved</li>
+          <li>Real estate frozen (sales −23%, supply −38%)</li>
+          <li>SRDP/SNDP stalled; broken 6-guarantees scorecard</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <h4>Pillar 5 — Bhavishya / "Hyderabad for All" <span class="pill">15%</span></h4>
+      <p class="why">Why: pride and fear need a forward promise to convert. This pillar carries the manifesto and community-specific outreach — and keeps the campaign positive enough to avoid pure-negativity fatigue.</p>
+      <strong style="font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;">Clusters:</strong> GHMC manifesto pledges (flood-free monsoon, IT-corridor mobility, home-protection guarantee, free clinics) · women's safety &amp; water · youth/jobs · traders/MSME revival · Old City civic dignity · communal harmony as Hyderabad's brand.
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2><span class="n">05</span>Regional issue map — by zone</h2>
+    <p class="sub">The hyperlocal layer. Match content to the problem people in that belt actually live with. <span class="conf">🟡 validate each with local corporators.</span></p>
+    <table>
+      <thead><tr><th style="width:22%">Zone / belt</th><th style="width:40%">Live issues to lead with</th><th>Best-fit pillar &amp; angle</th></tr></thead>
+      <tbody>
+        <tr><td class="k">IT Corridor — Gachibowli, Madhapur, Kondapur, Nanakramguda</td><td class="t">Killer traffic, monsoon flooding of tech parks, Kancha Gachibowli forest, jobs slowdown</td><td class="t">Pride + Stalled City: "We built this corridor — they're choking it and bulldozing its forest"</td></tr>
+        <tr><td class="k">West — Kukatpally, Miyapur, Bachupally</td><td class="t">Water supply, traffic, drainage, rapid unplanned growth</td><td class="t">Fix My Basti + Pride (Metro)</td></tr>
+        <tr><td class="k">Lake-belt layouts — Neknampur, Gachibowli fringes, Manikonda</td><td class="t">HYDRAA demolitions of homes near lakes; valid-paper anxiety</td><td class="t">Bulldozer Govt: home-protection guarantee</td></tr>
+        <tr><td class="k">Musi belt &amp; riverfront</td><td class="t">Riverfront-project displacement, demolitions, rehab promises unmet</td><td class="t">Bulldozer Govt: victim testimony</td></tr>
+        <tr><td class="k">East — LB Nagar, Uppal, Dilsukhnagar</td><td class="t">SRDP flyovers (our build), drainage, potholes, traffic</td><td class="t">Pride + Fix My Basti</td></tr>
+        <tr><td class="k">Old City — Charminar, Falaknuma</td><td class="t">Civic neglect, sanitation, heritage, development gap</td><td class="t">Fix My Basti (vernacular); tread carefully on AIMIM turf</td></tr>
+        <tr><td class="k">Peripheral growth — Serilingampally, Patancheru, Quthbullapur</td><td class="t">Water, roads, layateral civic gaps in fast-growing wards</td><td class="t">Fix My Basti + Vision</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2><span class="n">06</span>Formats × channels</h2>
+    <table>
+      <thead><tr><th style="width:20%">Channel</th><th style="width:24%">Owns which audience</th><th style="width:30%">Hero formats</th><th>Cadence</th></tr></thead>
+      <tbody>
+        <tr><td class="k">WhatsApp (groups + Status)</td><td class="t">Homeowners, basti, traders, women</td><td class="t">Forwardable cards, 30-sec vertical videos, voice notes in Telugu/Urdu</td><td class="t">Daily; division-level broadcast lists</td></tr>
+        <tr><td class="k">Instagram (Reels)</td><td class="t">IT, youth, first-time voters</td><td class="t">Reels, carousels, before/after, meme-format data</td><td class="t">1–2 reels/day</td></tr>
+        <tr><td class="k">X / Twitter</td><td class="t">News cycle, media, opinion-shapers</td><td class="t">KTR-led threads, real-time rebuttals, data drops</td><td class="t">Continuous; rapid-response</td></tr>
+        <tr><td class="k">YouTube</td><td class="t">All; deep-dive + vernacular</td><td class="t">Victim docu-shorts, "We Built This" mini-films, manifesto explainers</td><td class="t">2–3/week</td></tr>
+        <tr><td class="k">Facebook</td><td class="t">35+, vernacular, women</td><td class="t">Localised posts, lives from bastis, photo albums of works</td><td class="t">Daily</td></tr>
+        <tr><td class="k">Ground / offline</td><td class="t">Everyone — the decider</td><td class="t">Door-to-door cards, corner meetings, "home-protection pledge" drives, posters</td><td class="t">Escalating to peak</td></tr>
+        <tr><td class="k">Influencers / meme pages</td><td class="t">Youth, IT</td><td class="t">Hyderabad-civic creators, RWA voices, collabs (disclosed)</td><td class="t">Weekly seeding</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13.5px;color:var(--ink-soft);font-family:'IBM Plex Sans',sans-serif;"><strong>Production rule:</strong> make once, cut many. One verified HYDRAA story → a YouTube short, an Insta reel, 3 WhatsApp cards (Telugu/Urdu/English), an X thread, an FB live. The brief documents are the fact-base for all of it.</p>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <h2><span class="n">07</span>Phased content calendar</h2>
+    <p class="sub">Assumes a ~14–16 week run-up. Compress proportionally if the schedule is shorter. <span class="conf">🔴 set exact dates to the EC notification.</span></p>
+    <table>
+      <thead><tr><th style="width:16%">Phase</th><th style="width:14%">Window</th><th style="width:34%">Theme &amp; goal</th><th>Signature content</th></tr></thead>
+      <tbody>
+        <tr><td class="k">0 · Foundation</td><td class="t">Wk −16 to −11</td><td class="t">Re-establish pride &amp; seed the record. Build division issue-audits and WhatsApp lists.</td><td class="t">"We Built This City" film series; IT-export &amp; flyover explainers; volunteer onboarding</td></tr>
+        <tr><td class="k">1 · Contrast</td><td class="t">Wk −11 to −7</td><td class="t">Open the attack: bulldozer govt + stalled city. Make HYDRAA the city's defining issue.</td><td class="t">HYDRAA victim docu-shorts; IT-decline data drops; "home-protection pledge" launch</td></tr>
+        <tr><td class="k">2 · Hyperlocal</td><td class="t">Wk −7 to −4</td><td class="t">Go division-by-division. Candidate intros + each ward's top-3 civic fixes.</td><td class="t">"Fix My Basti" division cards; candidate reels; RWA roundtables; local lives</td></tr>
+        <tr><td class="k">3 · Peak</td><td class="t">Wk −4 to −1</td><td class="t">Maximum volume; the big contrast + the Hitler-mindset frame; rallies amplified.</td><td class="t">Rally clips, manifesto release, "mindset" explainer, influencer wave, testimonial blitz</td></tr>
+        <tr><td class="k">4 · GOTV</td><td class="t">Final 72 hrs</td><td class="t">Turn intent into turnout. Logistics, booth info, one emotional closing ask.</td><td class="t">"Protect your home — vote" closer; booth-finder cards; polling-day reminders</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <h2><span class="n">08</span>Signature campaigns &amp; hashtags</h2>
+    <ul class="clean">
+      <li><strong>#HyderabadWeBuilt / #BrandHyderabad</strong> — the pride engine; user-generated "my favourite BRS-built thing" posts.</li>
+      <li><strong>#BulldozerSarkar / #SaveOurHomes</strong> — the HYDRAA fear campaign; pair with a real "Home-Protection Pledge" voters can sign.</li>
+      <li><strong>#FixMyBasti / #MyDivisionMyVote</strong> — hyperlocal UGC: residents post their pothole/drain/water problem, tag the corporator.</li>
+      <li><strong>#BringBackBrandHyderabad</strong> — the stalled-city/jobs frame for the IT corridor.</li>
+      <li><strong>Signature asset:</strong> a "Home-Protection Pledge" + a division-level "Report Card" comparing what BRS built vs. what's stalled — both designed to be shared and signed.</li>
+    </ul>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <h2><span class="n">09</span>Rapid-response "issue desk"</h2>
+    <p>A small always-on team that turns events into content within hours. <span class="conf">🟢 highest-ROI unit in the campaign.</span></p>
+    <ul class="clean">
+      <li><strong>HYDRAA watch</strong> — document every demolition (with consent), verify papers/court orders, publish within hours. This is the campaign's beating heart.</li>
+      <li><strong>Monsoon desk</strong> — when it floods, be first with "this is the drain programme they shelved" + on-ground help.</li>
+      <li><strong>Fact-check unit</strong> — rebut Congress claims with sourced counters; protect us from being fact-checked by keeping our own claims clean.</li>
+      <li><strong>Gaffe capture</strong> — clip and contextualise opponents' own words (e.g. the Hitler remark) accurately, never doctored.</li>
+    </ul>
+  </section>
+
+  <!-- 10 -->
+  <section>
+    <h2><span class="n">10</span>Messengers</h2>
+    <table>
+      <thead><tr><th style="width:24%">Voice</th><th style="width:34%">Carries</th><th>Best channels</th></tr></thead>
+      <tbody>
+        <tr><td class="k">KTR (lead)</td><td class="t">Brand Hyderabad, IT, the development record, top-line attack</td><td class="t">X, YouTube, rallies, press</td></tr>
+        <tr><td class="k">Division candidates / corporators</td><td class="t">Hyperlocal "Fix My Basti" credibility</td><td class="t">WhatsApp, FB lives, ground</td></tr>
+        <tr><td class="k">Women leaders</td><td class="t">Water, clinics, demolition trauma, safety</td><td class="t">FB, door-to-door, basti meets</td></tr>
+        <tr><td class="k">Youth / student leaders</td><td class="t">Kancha Gachibowli, jobs, free expression</td><td class="t">Instagram, campus, YouTube</td></tr>
+        <tr><td class="k">Real voices (verified victims, RWA heads, IT workers)</td><td class="t">The most persuasive content of all — authentic testimony</td><td class="t">Every channel</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 11 -->
+  <section>
+    <h2><span class="n">11</span>Measurement &amp; guardrails</h2>
+    <h3>Weekly scorecard</h3>
+    <ul class="clean">
+      <li>Share-of-voice vs BJP &amp; Congress, per issue · sentiment in HYDRAA-affected wards</li>
+      <li>Reach &amp; engagement by persona · video completion rates · hashtag trends</li>
+      <li>WhatsApp list growth · division-kit usage · volunteer sign-ups · pledge signatures</li>
+      <li>Ground-event turnout · earned-media pickups · rapid-response time</li>
+    </ul>
+    <div class="guard">
+      <span class="label">Non-negotiable guardrails — these protect the campaign as much as the public</span>
+      <ul>
+        <li><strong>Every claim sourced.</strong> Tie content back to the briefs and primary records (court orders, CAG, official IT data). A single fabricated number can sink a whole narrative.</li>
+        <li><strong>Real quotes only.</strong> Use opponents' actual words (e.g. the Hitler remark, on record) — never doctored audio, video or invented quotes. That's both wrong and legally dangerous.</li>
+        <li><strong>Consent for victims.</strong> Real people's stories only with informed consent; protect the vulnerable.</li>
+        <li><strong>No communal or hate content.</strong> Keep the fight on homes, jobs and civic services — a non-communal frame is also the <em>bigger tent</em>, and it's where BRS wins.</li>
+        <li><strong>Respect the Model Code of Conduct</strong> and platform rules; disclose paid/influencer content.</li>
+      </ul>
+    </div>
+    <p style="font-size:13.5px;color:var(--ink-soft);font-family:'IBM Plex Sans',sans-serif;">These aren't just ethics — a clean, sourced campaign is a campaign that can't be discredited mid-cycle. Accuracy is the strategy.</p>
+  </section>
+
+  <div class="sources">
+    <p><strong>Fact-base for all content:</strong> the three companion briefs (neutral comparison, state-level BRS case, GHMC city case) and their underlying sources — CAG reports, Supreme Court / Telangana High Court orders, official Telangana IT data, Knight Frank/Anarock, and mainstream press. Validate every hyperlocal claim with the division's corporator before publishing.</p>
+    <p style="margin-top:10px;">BRS · GHMC 2026 Content &amp; Communications Playbook · v1.0 · June 2026 · Internal strategy document</p>
+  </div>
+
+  </div>
+</div>
+</body>
+</html>
