@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRS · GHMC 2026 — Messenger &amp; Location Deep-Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b1b22;--ink-soft:#45454f;--paper:#fbfaf7;--paper-2:#f2eef0;
+    --rule:#e0d3da;--rule-soft:#ece3e8;
+    --brs:#b5176b;--brs-deep:#8a1051;--brs-soft:#f7dcea;--brs-tint:#fbeef4;
+    --inc:#15489e;--good:#1f7a4d;--warn:#c47a14;--bad:#b23b2e;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper-2);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.6;}
+  .sheet{max-width:980px;margin:32px auto;background:var(--paper);padding:0 0 56px;box-shadow:0 18px 50px -28px rgba(80,10,45,.4);}
+  .label{font-family:"IBM Plex Sans",sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:600;}
+  .pad{padding:0 60px;}
+  .masthead{background:var(--brs);color:#fff;padding:44px 60px 34px;}
+  .masthead .kick{font-family:"IBM Plex Sans",sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:600;opacity:.85;margin-bottom:16px;}
+  h1{font-family:"Fraunces",serif;font-weight:900;font-size:38px;line-height:1.05;letter-spacing:-.015em;margin:0 0 12px;}
+  .masthead .stand{font-size:16.5px;max-width:66ch;margin:0;opacity:.96;}
+  .parthead{margin-top:42px;border-top:2px solid var(--brs);padding-top:14px;}
+  .parthead .label{color:var(--brs);}
+  .parthead h2{font-family:"Fraunces",serif;font-weight:900;font-size:28px;margin:4px 0 0;color:var(--brs-deep);}
+  section{margin-top:30px;}
+  h3{font-family:"Fraunces",serif;font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 4px;color:var(--ink);}
+  .sub{color:var(--ink-soft);font-size:14.5px;margin:0 0 14px;font-family:"IBM Plex Sans",sans-serif;}
+  p{margin:0 0 14px;}strong{font-weight:600;}
+  .mcard{border:1px solid var(--rule-soft);border-radius:9px;padding:0;margin:16px 0;overflow:hidden;background:#fff;}
+  .mcard .top{background:var(--brs-tint);border-bottom:1px solid var(--brs-soft);padding:13px 20px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .mcard .top h3{margin:0;color:var(--brs-deep);font-size:18px;}
+  .mcard .top .role{font-family:"IBM Plex Sans",sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--brs);}
+  .mcard .body{padding:14px 20px 16px;}
+  .row{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;font-size:14px;}
+  .row dt{font-family:"IBM Plex Sans",sans-serif;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);padding-top:3px;}
+  .row dd{margin:0 0 8px;}
+  .dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;}
+  .do,.dont{border-radius:6px;padding:10px 13px;font-size:13px;font-family:"IBM Plex Sans",sans-serif;}
+  .do{background:#eaf5ee;border:1px solid #cfe8d8;}.do b{color:var(--good);}
+  .dont{background:#fbeae7;border:1px solid #f3d6cf;}.dont b{color:var(--bad);}
+  .do ul,.dont ul{margin:6px 0 0;padding-left:16px;}.do li,.dont li{margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0 8px;font-size:13px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:top;}
+  thead th{font-family:"IBM Plex Sans",sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);font-weight:600;border-bottom:1.5px solid var(--brs);}
+  td.k{font-weight:600;}td .t{font-family:"IBM Plex Sans",sans-serif;font-size:12px;color:var(--ink-soft);}
+  tr:nth-child(even) td{background:#faf6f8;}
+  .matrix td,.matrix th{text-align:center;font-size:12px;}
+  .matrix td:first-child,.matrix th:first-child{text-align:left;}
+  .dot{display:inline-block;font-weight:700;}
+  .lead{color:var(--brs);}.supp{color:var(--ink-soft);}
+  .zcard{border:1px solid var(--rule-soft);border-left:4px solid var(--brs);border-radius:0 8px 8px 0;padding:15px 20px;margin:15px 0;background:#fff;}
+  .zcard h3{color:var(--brs-deep);margin-bottom:2px;}
+  .zcard .meta{font-family:"IBM Plex Sans",sans-serif;font-size:12px;color:var(--ink-soft);margin-bottom:10px;}
+  .zcard .hook{background:var(--paper-2);border-radius:6px;padding:9px 13px;font-size:13.5px;margin-top:8px;}
+  .zcard .hook b{font-family:"IBM Plex Sans",sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--brs);}
+  .conf{font-family:"IBM Plex Sans",sans-serif;font-size:10.5px;font-weight:600;white-space:nowrap;}
+  .note{background:#eef1f6;border:1px solid #dbe2ef;border-radius:6px;padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--ink-soft);}
+  .note b{color:var(--inc);}
+  ul.clean{list-style:none;padding:0;}ul.clean li{position:relative;padding-left:22px;margin-bottom:6px;}
+  ul.clean li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:2px;background:var(--brs);}
+  .sources{margin-top:34px;border-top:1px solid var(--rule);padding-top:16px;font-family:"IBM Plex Sans",sans-serif;font-size:11.5px;color:var(--ink-soft);}
+  @media(max-width:760px){.pad,.masthead{padding-left:20px;padding-right:20px;}.sheet{margin:0;}h1{font-size:27px;}.dodont,.row{grid-template-columns:1fr;}table{font-size:12px;}}
+  @media print{body{background:#fff;}.sheet{box-shadow:none;margin:0;}.mcard,.zcard,table,section{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="kick">Content Strategy · Deep-Dive Companion</div>
+    <h1>Messenger &amp; Location Playbook</h1>
+    <p class="stand">The execution layer beneath the GHMC content strategy: <strong>who</strong> delivers each message, and <strong>where</strong> it lands. Right voice, right zone, right issue — that is how a city campaign is actually won.</p>
+  </header>
+
+  <div class="pad">
+
+  <div class="note" style="margin-top:26px;">
+    <b>Read this first — the geography is moving.</b> GHMC has historically been <strong>6 zones, 30 circles, 150 divisions</strong>. A 2025 delimitation has pushed wards toward 300, and there is a live proposal to split the city into three corporations (GHMC core, Cyberabad for the IT west, Malkajgiri for the east). This plan builds on the familiar 6-zone map; <span class="conf">🔴</span> lock final boundaries to the Election Commission's notification before printing division-level material. The restructuring is also a <em>potential issue itself</em> — see the closing note.
+  </div>
+
+  <!-- PART A -->
+  <div class="parthead">
+    <div class="label">Part A</div>
+    <h2>The Messenger Playbook</h2>
+  </div>
+  <p class="sub">One rule above all: <strong>every messenger owns a lane.</strong> When the brand voice does pothole content or a local candidate does macro-economics, both lose credibility. Match the voice to the message and the audience.</p>
+
+  <!-- KTR -->
+  <div class="mcard">
+    <div class="top"><h3>KTR — the lead voice</h3><span class="role">Brand &amp; air war</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Owns</dt><dd>Brand Hyderabad, the IT/jobs story, the development record, the top-line attack, and the news cycle. He <em>is</em> the "we built this" argument.</dd>
+        <dt>Best audiences</dt><dd>IT/young professionals, middle class, media, opinion-shapers.</dd>
+        <dt>Channels</dt><dd>X (his strongest weapon), YouTube, marquee rallies, press conferences, English/Telugu interviews.</dd>
+        <dt>Tone</dt><dd>Confident, data-led, statesman-with-a-scalpel — pride upfront, sharp on contrast, never petty.</dd>
+        <dt>Signature content</dt><dd>Threads dropping verified data (IT exports, jobs); on-site reels at BRS-built infrastructure; rapid sourced rebuttals.</dd>
+      </dl>
+      <div class="dodont">
+        <div class="do"><b>DO</b><ul><li>Lead the IT-corridor &amp; "Brand Hyderabad" narrative citywide</li><li>Own debates with sourced numbers from the briefs</li><li>Set the day's agenda; let others amplify locally</li></ul></div>
+        <div class="dont"><b>DON'T</b><ul><li>Get pulled into ward-level pothole minutiae — delegate it</li><li>Trade personal insults or communal bait</li><li>Make any claim not in the fact-base</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KCR -->
+  <div class="mcard">
+    <div class="top"><h3>KCR — the patriarch</h3><span class="role">Emotional anchor · selective</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Owns</dt><dd>Legacy, Telangana &amp; Hyderabad pride, the big emotional set-piece. Scarcity is the strategy — a few high-impact appearances, not daily presence.</dd>
+        <dt>Best audiences</dt><dd>The committed base, older voters, sentiment/turnout.</dd>
+        <dt>Channels</dt><dd>Headline rallies, a small number of long-form addresses, archival "founder of modern Hyderabad" content.</dd>
+        <dt>Tone</dt><dd>Elder statesman; sweeping, emotional, legacy-framed.</dd>
+        <dt>Signature content</dt><dd>One or two peak-phase rallies; "the city he dreamed and built" film for the base.</dd>
+      </dl>
+      <div class="dodont">
+        <div class="do"><b>DO</b><ul><li>Deploy at peak for maximum turnout effect</li><li>Keep it legacy + vision, above the daily fray</li></ul></div>
+        <div class="dont"><b>DON'T</b><ul><li>Over-expose — frequency erodes the impact</li><li>Use for rebuttals or hyperlocal detail</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Candidates -->
+  <div class="mcard">
+    <div class="top"><h3>Division candidates &amp; sitting corporators</h3><span class="role">Ground war · hyperlocal</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Owns</dt><dd>The "Fix My Basti" pillar. Ward-level credibility — the drain, the road, the water line on <em>your</em> street. The single most decisive messenger group in a municipal poll.</dd>
+        <dt>Best audiences</dt><dd>Everyone in their division — especially homeowners, basti residents, women, traders.</dd>
+        <dt>Channels</dt><dd>WhatsApp broadcast lists, Facebook lives, door-to-door, corner meetings, local posters.</dd>
+        <dt>Tone</dt><dd>Accessible, accountable, "I live here too" — name the exact problem and the exact fix.</dd>
+        <dt>Signature content</dt><dd>Division "report cards" (built vs. stalled), walk-and-talk reels at the local problem spot, pledge drives.</dd>
+      </dl>
+      <div class="dodont">
+        <div class="do"><b>DO</b><ul><li>Speak only to issues you can name street-by-street</li><li>Localise every central message to your ward</li><li>Be the face of the Home-Protection Pledge locally</li></ul></div>
+        <div class="dont"><b>DON'T</b><ul><li>Drift into state/national macro arguments</li><li>Promise what GHMC can't deliver — stay credible</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Women -->
+  <div class="mcard">
+    <div class="top"><h3>Women leaders &amp; corporators</h3><span class="role">Trust &amp; kitchen-table issues</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Owns</dt><dd>Water, neighbourhood health (Basti Dawakhana), safety, and the human face of demolition trauma. Carries the "dignity" theme most credibly.</dd>
+        <dt>Best audiences</dt><dd>Women across every segment; basti and middle-class households.</dd>
+        <dt>Channels</dt><dd>Facebook, WhatsApp, door-to-door, mahila/self-help-group meetings.</dd>
+        <dt>Tone</dt><dd>Empathetic, protective, practical.</dd>
+        <dt>Signature content</dt><dd>Testimony alongside (consented) HYDRAA-affected women; "water &amp; clinics at your door" explainers.</dd>
+      </dl>
+      <div class="dodont">
+        <div class="do"><b>DO</b><ul><li>Centre real women's lived experience</li><li>Keep demolition stories dignified and consented</li></ul></div>
+        <div class="dont"><b>DON'T</b><ul><li>Exploit victims for spectacle</li><li>Reduce women voters to a single "scheme" pitch</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Youth -->
+  <div class="mcard">
+    <div class="top"><h3>Youth &amp; student leaders</h3><span class="role">Energy &amp; the campus front</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Owns</dt><dd>Kancha Gachibowli / environment, jobs &amp; the IT slowdown, free expression. The moral-urgency voice.</dd>
+        <dt>Best audiences</dt><dd>Students, first-time voters, the IT corridor.</dd>
+        <dt>Channels</dt><dd>Instagram (Reels), YouTube, X, campuses.</dd>
+        <dt>Tone</dt><dd>Energetic, idealistic, fluent in platform-native formats and memes.</dd>
+        <dt>Signature content</dt><dd>"They sent bulldozers to your campus" explainers; jobs-decline reels; green-Hyderabad content.</dd>
+      </dl>
+      <div class="dodont">
+        <div class="do"><b>DO</b><ul><li>Lead with the verified SC observations on the forest</li><li>Speak the platform's native language</li></ul></div>
+        <div class="dont"><b>DON'T</b><ul><li>Overclaim or meme past the facts</li><li>Pick communal fights to chase engagement</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real voices -->
+  <div class="mcard">
+    <div class="top"><h3>Real voices — victims, RWAs, IT workers, traders</h3><span class="role">The most persuasive of all</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Owns</dt><dd>Authentic testimony — the demolition victim with valid papers, the RWA president, the laid-off techie, the Begum Bazaar trader. Surrogates outperform politicians on trust.</dd>
+        <dt>Best audiences</dt><dd>Persuadable middle, fence-sitters, every segment.</dd>
+        <dt>Channels</dt><dd>Every channel — these clips travel furthest.</dd>
+        <dt>Tone</dt><dd>Unscripted, real, first-person.</dd>
+        <dt>Signature content</dt><dd>Short consented testimonials; RWA roundtables; "a day in the stalled city" worker diaries.</dd>
+      </dl>
+      <div class="dodont">
+        <div class="do"><b>DO</b><ul><li>Get informed, documented consent every time</li><li>Verify each person's claim before publishing</li></ul></div>
+        <div class="dont"><b>DON'T</b><ul><li>Stage or script "real" testimony</li><li>Expose vulnerable people to backlash without their understanding</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spokes + influencers compact -->
+  <div class="mcard">
+    <div class="top"><h3>Spokespersons &amp; verified creators</h3><span class="role">Rebuttal &amp; reach</span></div>
+    <div class="body">
+      <dl class="row">
+        <dt>Spokespersons</dt><dd>Own TV panels and the <strong>fact-check / rapid-rebuttal</strong> function. Disciplined, sourced, calm. They protect the campaign from being fact-checked by keeping our claims clean.</dd>
+        <dt>Influencers / creators</dt><dd>Hyderabad civic pages, meme accounts, RWA &amp; IT voices — seed pride and civic content natively. <strong>All paid/collab content disclosed.</strong></dd>
+        <dt>Tone</dt><dd>Spokespersons: authoritative. Creators: native to the platform.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Messenger x Pillar matrix -->
+  <section>
+    <h3>Messenger × pillar — who leads what</h3>
+    <p class="sub"><span class="dot lead">●</span> lead voice &nbsp; <span class="dot supp">○</span> supporting</p>
+    <table class="matrix">
+      <thead><tr><th>Pillar ↓ / Messenger →</th><th>KTR</th><th>KCR</th><th>Candidates</th><th>Women</th><th>Youth</th><th>Real voices</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Pride "City We Built"</td><td><span class="dot lead">●</span></td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td><td><span class="dot supp">○</span></td><td><span class="dot supp">○</span></td><td><span class="dot supp">○</span></td></tr>
+        <tr><td class="k">2 · Bulldozer Govt</td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td><td><span class="dot supp">○</span></td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td><td><span class="dot lead">●</span></td></tr>
+        <tr><td class="k">3 · "Fix My Basti"</td><td><span class="dot supp">○</span></td><td>—</td><td><span class="dot lead">●</span></td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td><td><span class="dot lead">●</span></td></tr>
+        <tr><td class="k">4 · Stalled City (data)</td><td><span class="dot lead">●</span></td><td>—</td><td><span class="dot supp">○</span></td><td>—</td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td></tr>
+        <tr><td class="k">5 · "Hyderabad for All"</td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td><td><span class="dot supp">○</span></td><td><span class="dot lead">●</span></td><td><span class="dot lead">●</span></td><td><span class="dot supp">○</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PART B -->
+  <div class="parthead">
+    <div class="label">Part B</div>
+    <h2>The Location Playbook</h2>
+  </div>
+  <p class="sub">The six GHMC zones, each with its own character, live issues, lead pillar, best messenger and ready content angles. <span class="conf">🟡 validate each issue with the local corporator before publishing.</span></p>
+
+  <!-- Serilingampally -->
+  <div class="zcard">
+    <h3>Serilingampally Zone — the IT corridor</h3>
+    <div class="meta">Gachibowli · Madhapur · Kondapur · Nanakramguda · Financial District · Kokapet · Manikonda · Narsingi &nbsp;·&nbsp; affluent + IT-migrant, high-turnout-persuadable</div>
+    <p><strong>Live issues:</strong> crippling traffic, tech-park flooding, Kancha Gachibowli (HCU) forest, HYDRAA demolitions in lake-belt layouts, the IT-jobs slowdown.</p>
+    <p><strong>Lead pillar:</strong> Pride + Stalled City + Bulldozer (lake-belt). <strong>Lead messenger:</strong> KTR &amp; youth/student leaders. <strong>Channels:</strong> Instagram, X, YouTube.</p>
+    <div class="hook"><b>Hook 1</b> — KTR reel on a BRS-built flyover: "We made this India's IT capital. Two years on — gridlock, a frozen jobs market, and bulldozers in the campus forest next door."</div>
+    <div class="hook"><b>Hook 2</b> — Student voice + verified SC line ("restore the forest or send officials to jail") over Kancha Gachibowli footage.</div>
+  </div>
+
+  <!-- Kukatpally -->
+  <div class="zcard">
+    <h3>Kukatpally Zone — the dense west</h3>
+    <div class="meta">Kukatpally · KPHB · Miyapur · Moosapet · Qutbullapur · Gajularamaram &nbsp;·&nbsp; working/middle class, large settler population</div>
+    <p><strong>Live issues:</strong> drinking-water reliability, traffic chokepoints, drainage/flooding, metro connectivity, fast unplanned growth.</p>
+    <p><strong>Lead pillar:</strong> Fix My Basti + Pride (Metro). <strong>Lead messenger:</strong> division candidates &amp; women leaders. <strong>Channels:</strong> WhatsApp, Facebook, ground.</p>
+    <div class="hook"><b>Hook 1</b> — Corporator walk-through: "Here's the drain we cleared, here's the one they let silt up. Which Hyderabad do you want?"</div>
+    <div class="hook"><b>Hook 2</b> — Women-led "water at your door" content contrasting supply now vs. the BRS build-out.</div>
+  </div>
+
+  <!-- LB Nagar -->
+  <div class="zcard">
+    <h3>LB Nagar Zone — the growing east</h3>
+    <div class="meta">LB Nagar · Dilsukhnagar · Saroornagar · Uppal · Hayathnagar · Nagole · Kapra &nbsp;·&nbsp; aspirational middle class</div>
+    <p><strong>Live issues:</strong> SRDP flyovers (a flagship BRS build here), drainage, potholes, traffic, civic upkeep.</p>
+    <p><strong>Lead pillar:</strong> Pride + Fix My Basti. <strong>Lead messenger:</strong> candidates + KTR (infra). <strong>Channels:</strong> Facebook, WhatsApp, YouTube.</p>
+    <div class="hook"><b>Hook 1</b> — "The LB Nagar flyover that ended your daily jam — built by BRS. What's been built for you since?"</div>
+    <div class="hook"><b>Hook 2</b> — Before/after pothole &amp; drainage report card, division by division.</div>
+  </div>
+
+  <!-- Khairatabad -->
+  <div class="zcard">
+    <h3>Khairatabad Zone — the central mix</h3>
+    <div class="meta">Khairatabad · Jubilee Hills · Yousufguda · Mehdipatnam · Karwan · Goshamahal (Begum Bazaar) &nbsp;·&nbsp; affluent + dense central + trader belt</div>
+    <p><strong>Live issues:</strong> HYDRAA demolitions (lake/farmhouse belt around Jubilee Hills), traffic, central-city water &amp; sanitation, trader anxiety in Begum Bazaar.</p>
+    <p><strong>Lead pillar:</strong> Bulldozer Govt + Fix My Basti. <strong>Lead messenger:</strong> real voices (traders, RWAs) + candidates. <strong>Channels:</strong> WhatsApp groups, Facebook, X.</p>
+    <div class="hook"><b>Hook 1</b> — Begum Bazaar trader: "A city under the bulldozer is a market with no customers."</div>
+    <div class="hook"><b>Hook 2</b> — Homeowner with valid papers + court stay, telling their HYDRAA story (consented).</div>
+  </div>
+
+  <!-- Secunderabad -->
+  <div class="zcard">
+    <h3>Secunderabad Zone — the settled north</h3>
+    <div class="meta">Secunderabad · Begumpet · Marredpally · Musheerabad · Amberpet · Malkajgiri · Alwal &nbsp;·&nbsp; older twin-city, settled middle class, cantonment fringe</div>
+    <p><strong>Live issues:</strong> ageing roads &amp; drainage, cantonment-area civic gaps, traffic, parking.</p>
+    <p><strong>Lead pillar:</strong> Fix My Basti + Pride. <strong>Lead messenger:</strong> candidates + women leaders. <strong>Channels:</strong> Facebook, WhatsApp, ground.</p>
+    <div class="hook"><b>Hook 1</b> — "Old Secunderabad deserves new infrastructure — here's our ward plan vs. two years of neglect."</div>
+    <div class="hook"><b>Hook 2</b> — Local clinic/Basti Dawakhana spotlight from a women leader.</div>
+  </div>
+
+  <!-- Charminar -->
+  <div class="zcard">
+    <h3>Charminar Zone — the Old City</h3>
+    <div class="meta">Charminar · Falaknuma · Chandrayangutta · Yakutpura · Malakpet · Santoshnagar &nbsp;·&nbsp; dense, historic, AIMIM stronghold</div>
+    <p><strong>Live issues:</strong> chronic civic neglect — sanitation, drainage, water, narrow-lane mobility, heritage upkeep.</p>
+    <p><strong>Lead pillar:</strong> Fix My Basti (civic delivery only). <strong>Lead messenger:</strong> local candidates &amp; real residents, in Telugu/Urdu. <strong>Channels:</strong> ground, WhatsApp, vernacular video.</p>
+    <p style="font-size:13px;color:var(--bad);font-family:'IBM Plex Sans',sans-serif;margin-top:8px;"><strong>Discipline:</strong> this is AIMIM turf — compete strictly on civic services and dignity. Keep it scrupulously non-communal; pick targeted winnable pockets rather than carpet-spending here.</p>
+    <div class="hook"><b>Hook</b> — Resident-led "our basti's broken drains and water" civic content, with a concrete fix pledge — no religious framing, ever.</div>
+  </div>
+
+  <!-- Cross-cutting Musi -->
+  <div class="zcard" style="border-left-color:var(--bad);">
+    <h3>Cross-cutting — the Musi belt</h3>
+    <div class="meta">Riverfront stretches across Old City &amp; central zones &nbsp;·&nbsp; displaced &amp; demolition-affected families</div>
+    <p><strong>Live issue:</strong> riverfront-project displacement, demolitions, unmet rehab promises. <strong>Pillar:</strong> Bulldozer Govt. <strong>Messenger:</strong> real voices + women leaders. This belt produces the campaign's most powerful testimony — handle with consent and care.</p>
+  </div>
+
+  <!-- Messenger x Zone grid -->
+  <section>
+    <h3>Deployment grid — primary messenger by zone</h3>
+    <table>
+      <thead><tr><th style="width:22%">Zone</th><th style="width:26%">Primary messenger</th><th style="width:22%">Lead pillar</th><th>Channel emphasis</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Serilingampally (IT)</td><td class="t">KTR + youth/student leaders</td><td class="t">Pride · Stalled City</td><td class="t">Instagram, X, YouTube</td></tr>
+        <tr><td class="k">Kukatpally (West)</td><td class="t">Candidates + women leaders</td><td class="t">Fix My Basti · Pride</td><td class="t">WhatsApp, FB, ground</td></tr>
+        <tr><td class="k">LB Nagar (East)</td><td class="t">Candidates + KTR (infra)</td><td class="t">Pride · Fix My Basti</td><td class="t">FB, WhatsApp, YouTube</td></tr>
+        <tr><td class="k">Khairatabad (Central)</td><td class="t">Real voices (traders/RWAs) + candidates</td><td class="t">Bulldozer · Fix My Basti</td><td class="t">WhatsApp, FB, X</td></tr>
+        <tr><td class="k">Secunderabad (North)</td><td class="t">Candidates + women leaders</td><td class="t">Fix My Basti · Pride</td><td class="t">FB, WhatsApp, ground</td></tr>
+        <tr><td class="k">Charminar (Old City)</td><td class="t">Local candidates + residents (vernacular)</td><td class="t">Fix My Basti only</td><td class="t">Ground, WhatsApp, vernacular video</td></tr>
+        <tr><td class="k">Musi belt (cross-cut)</td><td class="t">Real voices + women leaders</td><td class="t">Bulldozer Govt</td><td class="t">YouTube, FB, WhatsApp</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- restructuring note -->
+  <section>
+    <h3>Strategic watch — the GHMC restructuring</h3>
+    <p>The move to redraw wards (toward 300) and possibly split the city into three corporations is both an <strong>operational risk</strong> (boundaries and the very units you're organising around may shift) and a <strong>potential message</strong>. If it advances, a disciplined, factual line to test: <em>"Hyderabad is one city — don't carve it up for convenience; fix it."</em> <span class="conf">🔴 Do not assert motive as fact</em></span> — confirm the official rationale and status first, and let residents' disruption, not speculation, carry the argument.</p>
+  </section>
+
+  <div class="note">
+    <b>Guardrails still apply, everywhere.</b> Every claim sourced to the briefs and primary records; real quotes only (the Hitler remark is usable precisely because it's on record — never doctored media); consent for every victim; strictly non-communal framing (it's also the bigger tent); Model Code compliance; disclose paid/influencer content. A clean campaign is an un-discreditable campaign.
+  </div>
+
+  <div class="sources">
+    <p><strong>Geography sourced from:</strong> GHMC administrative-division records via Wikipedia, Deccan Chronicle, and GHMC ward/circle listings (6 zones, 30 circles, 150 divisions; 2025 delimitation toward 300 wards; reported tri-corporation proposal). Validate final boundaries against the Election Commission notification. <strong>Issue fact-base:</strong> the companion GHMC brief and its underlying CAG, Supreme Court / Telangana High Court, official IT-data and press sources.</p>
+    <p style="margin-top:10px;">BRS · GHMC 2026 · Messenger &amp; Location Deep-Dive · v1.0 · June 2026 · Internal strategy companion</p>
+  </div>
+
+  </div>
+</div>
+</body>
+</html>
